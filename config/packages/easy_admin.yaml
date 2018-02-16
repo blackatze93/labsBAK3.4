@@ -1,6 +1,132 @@
-#easy_admin:
-#    entities:
-#        # List the entity class name you want to manage
+easy_admin:
+    entities:
+        Usuario:
+            class: App\Entity\Usuario
+            controller: App\Controller\UsuarioController
+
+            list:
+                title: 'Usuarios'
+                fields:
+                    - { property: 'tipoDocumento' }
+                    - { property: 'documento', type: 'text' }
+                    - { property: 'codigo', type: 'text' }
+                    - 'nombre'
+                    - 'apellido'
+                    - 'email'
+                    - 'rol'
+                    - 'activo'
+                    - 'fechaCreacion'
+                sort: 'fechaCreacion'
+
+            show:
+                fields:
+                    - { property: 'tipoDocumento' }
+                    - { property: 'documento', type: 'text' }
+                    - { property: 'codigo', type: 'text' }
+                    - 'nombre'
+                    - 'apellido'
+                    - 'email'
+                    - 'rol'
+                    - 'cargo'
+                    - 'estado'
+                    - 'dependencia'
+                    - 'proyectoCurricular'
+                    - 'activo'
+                    - 'fechaCreacion'
+
+            form:
+                fields:
+                    - { property: 'tipoDocumento', type: 'choice', label: 'Tipo de Documento', type_options: { choices:  { 'Cédula de Ciudadanía': 'C.C.' , 'Tarjeta de Identidad': 'T.I.', 'Cédula de Extranjería': 'C.E.' }, attr: { 'data-widget': 'select2' } } }
+                    - { property: 'documento', type: 'text' }
+                    - { property: 'codigo', type: 'text' }
+                    - 'nombre'
+                    - 'apellido'
+                    - 'email'
+                    - { property: 'passwordEnClaro', label: 'Contraseña', type: 'text' }
+                    - { property: 'rol', type: 'choice', type_options: { choices:  { 'Estudiante': 'ROLE_ESTUDIANTE', 'Funcionario': 'ROLE_FUNCIONARIO', 'Docente': 'ROLE_DOCENTE', 'Administrador': 'ROLE_ADMIN' }, attr: { 'data-widget': 'select2' } } }
+                    - 'cargo'
+                    - { property: 'estado', type: 'choice', type_options: { choices:  { 'Paz y Salvo': 'Paz y Salvo', 'En Mora': 'En Mora' }, attr: { 'data-widget': 'select2' } } }
+                    - { property: 'dependencia', type: 'entity', type_options: { class: 'App\Entity\Dependencia', attr: { 'data-widget': 'select2' }, placeholder: 'Ninguna' } }
+                    - { property: 'proyectoCurricular', type: 'entity', type_options: { class: 'App\Entity\ProyectoCurricular', attr: { 'data-widget': 'select2' }, placeholder: 'Ninguno' } }
+                    - 'activo'
+
+            new:
+                fields:
+                    - { property: 'email', type_options: { data: '@correo.udistrital.edu.co' } }
+
+            edit:
+                fields:
+                    - { property: 'passwordEnClaro' }
+
+        Dependencia:
+            class: App\Entity\Dependencia
+
+            list:
+                title: 'Dependencias'
+                sort: ['codigo', 'ASC']
+                fields:
+                    - 'codigo'
+                    - 'nombre'
+                    - 'facultad'
+
+            edit:
+                title: 'Modificar Dependencia'
+
+            show:
+                title: 'Dependencia'
+                fields:
+                    - 'codigo'
+                    - 'nombre'
+                    - 'facultad'
+
+        ProyectoCurricular:
+            class: App\Entity\ProyectoCurricular
+
+            list:
+                title: 'Proyectos Curriculares'
+                actions:
+                    - { name: 'show', icon: 'eye' }
+                    - { name: 'new', label: 'Crear Proyecto Curricular' }
+                fields:
+                    - { property: 'id', type: 'text' }
+                    - 'nombre'
+                    - 'facultad'
+
+            form:
+                fields:
+                    - { property: 'id', type: 'integer' }
+                    - 'nombre'
+                    - 'facultad'
+
+            new:
+                title: 'Crear Proyecto Curricular'
+
+            edit:
+                title: 'Modificar Proyecto Curricular'
+
+            show:
+                title: 'Proyecto Curricular'
+                fields:
+                    - 'id'
+                    - 'nombre'
+                    - 'facultad'
+
+        Facultad:
+            class: App\Entity\Facultad
+
+            list:
+                title: 'Facultades'
+
+            show:
+                fields:
+                    - 'nombre'
+                    - 'dependencias'
+                    - 'proyectosCurriculares'
+
+            form:
+                fields:
+                    - 'nombre'
+
 #        - App\Entity\Product
 #        - App\Entity\Category
 #        - App\Entity\User
