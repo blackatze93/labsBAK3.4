@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b3a49a2e2b1be304f9a9313e7f419cb7",
+    "content-hash": "12d4a54d9f6448ae5caa06f473098a9c",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -925,16 +925,16 @@
             "time": "2018-02-27T07:30:56+00:00"
         },
         {
-            "name": "javiereguiluz/easyadmin-bundle",
+            "name": "easycorp/easyadmin-bundle",
             "version": "v1.17.12",
             "source": {
                 "type": "git",
-                "url": "https://github.com/javiereguiluz/EasyAdminBundle.git",
+                "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
                 "reference": "f9114922faf5be8a4d5e70a774e672a67250baec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/javiereguiluz/EasyAdminBundle/zipball/f9114922faf5be8a4d5e70a774e672a67250baec",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/f9114922faf5be8a4d5e70a774e672a67250baec",
                 "reference": "f9114922faf5be8a4d5e70a774e672a67250baec",
                 "shasum": ""
             },
@@ -1010,7 +1010,6 @@
                 "backend",
                 "generator"
             ],
-            "abandoned": "easycorp/easyadmin-bundle",
             "time": "2018-02-24T09:24:55+00:00"
         },
         {
@@ -2800,16 +2799,16 @@
         },
         {
             "name": "symfony/maker-bundle",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "ba427289009de6f0fd51fb51186eeaa70ab3a33d"
+                "reference": "9db72995231c12c701249f07743c0591ccf70e73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/ba427289009de6f0fd51fb51186eeaa70ab3a33d",
-                "reference": "ba427289009de6f0fd51fb51186eeaa70ab3a33d",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/9db72995231c12c701249f07743c0591ccf70e73",
+                "reference": "9db72995231c12c701249f07743c0591ccf70e73",
                 "shasum": ""
             },
             "require": {
@@ -2856,7 +2855,7 @@
                 "scaffold",
                 "scaffolding"
             ],
-            "time": "2018-02-21T19:43:12+00:00"
+            "time": "2018-03-14T01:02:47+00:00"
         },
         {
             "name": "symfony/options-resolver",
