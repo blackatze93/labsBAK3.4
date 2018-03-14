@@ -1,0 +1,156 @@
+{% extends 'layout.html.twig' %}
+{% form_theme form 'form/fields.html.twig' %}
+
+{% block page_title %}Perfil del Usuario{% endblock %}
+{% block content_title %}Perfil del Usuario{% endblock %}
+
+{% block main %}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.tipoDocumento, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.tipoDocumento, {'attr' : {'class' : 'form-control', 'readonly' : 'readonly'}}) }}
+                    <span class="text-danger">{{ form_errors(form.tipoDocumento) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.documento, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.documento, {'attr' : {'class' : 'form-control', 'readonly' : 'readonly'}}) }}
+                    <span class="text-danger">{{ form_errors(form.documento) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.codigo, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.codigo, {'attr' : {'class' : 'form-control', 'readonly' : 'readonly'}}) }}
+                    <span class="text-danger">{{ form_errors(form.codigo) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.nombre, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.nombre, {'attr' : {'class' : 'form-control'}}) }}
+                    <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.apellido, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.apellido, {'attr' : {'class' : 'form-control'}}) }}
+                    <span class="text-danger">{{ form_errors(form.apellido) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.email, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.email, {'attr' : {'class' : 'form-control'}}) }}
+                    <span class="text-danger">{{ form_errors(form.email) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.passwordEnClaro.pass1, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.passwordEnClaro.pass1, {'attr' : {'class' : 'form-control', 'placeholder': 'Ingrese una nueva contraseña para modificar la actual.'}}) }}
+                    <span class="text-danger">{{ form_errors(form.passwordEnClaro.pass1) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.passwordEnClaro.pass2, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.passwordEnClaro.pass2, {'attr' : {'class' : 'form-control'}}) }}
+                    <span class="text-danger">{{ form_errors(form.passwordEnClaro.pass2) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.rol, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.rol, {'attr' : {'class' : 'form-control', 'data-widget': 'select2'}}) }}
+                    <span class="text-danger">{{ form_errors(form.rol) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.cargo, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.cargo, {'attr' : {'class' : 'form-control'}}) }}
+                    <span class="text-danger">{{ form_errors(form.cargo) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.dependencia, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.dependencia, {'attr' : {'class' : 'form-control', 'data-widget': 'select2'}}) }}
+                    <span class="text-danger">{{ form_errors(form.dependencia) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.proyectoCurricular, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.proyectoCurricular, {'attr' : {'class' : 'form-control', 'data-widget': 'select2'}}) }}
+                    <span class="text-danger">{{ form_errors(form.proyectoCurricular) }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-10">
+            {{ form_widget(form.guardar, {'attr' : {'class' : 'btn btn-primary'}, 'label' : '<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar'}) }}
+            {{ form_widget(form.restablecer, {'attr' : {'class' : 'btn btn-warning'}, 'label' : '<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Restablecer'}) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block body_javascript %}
+    {{ parent() }}
+
+    <script>
+        // Funciones para hacer los selects y el checkbox readonly
+        $(function(){
+            $('#usuario_tipoDocumento').each(function(){
+                $(this)
+                    .hide()
+                    .parent().append('<input type="text" class="form-control" value="' + $(this).find(":selected").text() + '" readonly>')
+            });
+            $('#usuario_rol').each(function(){
+                $(this)
+                    .hide()
+                    .parent().append('<input type="text" class="form-control" value="' + $(this).find(":selected").text() + '" readonly>')
+            });
+            $('#usuario_dependencia').each(function(){
+                $(this)
+                    .hide()
+                    .parent().append('<input type="text" class="form-control" value="' + $(this).find(":selected").text() + '" readonly>')
+            });
+            $('#usuario_proyectoCurricular').each(function(){
+                $(this)
+                    .hide()
+                    .parent().append('<input type="text" class="form-control" value="' + $(this).find(":selected").text() + '" readonly>')
+            });
+        })
+    </script>
+{% endblock %}
