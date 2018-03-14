@@ -1,8 +1,19 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    providers:
-        in_memory: { memory: ~ }
     firewalls:
+        frontend:
+            pattern:        ^/*
+            provider:       usuarios
+            anonymous:      ~
+            form_login:
+                login_path:  usuario_login
+                check_path:  usuario_login_check
+                use_referer: true
+            logout:
+                path:        usuario_logout
+            remember_me:
+                secret:      "%kernel.secret%"
+                lifetime:    28800
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -16,3 +27,18 @@ security:
 
             # form_login: ~
             # https://symfony.com/doc/current/security/form_login_setup.html
+
+    access_control:
+        - { path: ^/admin/*, roles: ROLE_ADMIN }
+        - { path: ^/registro/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/perfil/*, roles: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/efconnect, role: ROLE_ADMIN }
+        - { path: ^/elfinder, role: ROLE_ADMIN }
+        - { path: ^/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+    providers:
+        usuarios:
+            entity: { class: App\Entity\Usuario, property: documento }
+
+    encoders:
+        App\Entity\Usuario: bcrypt

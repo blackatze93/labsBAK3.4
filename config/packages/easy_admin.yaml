@@ -1,4 +1,85 @@
 easy_admin:
+    site_name: 'Laboratorios de Informática'
+
+    formats:
+            date:     'Y-m-d'
+            time:     'H:i'
+            datetime: 'Y-m-d H:i'
+
+    list:
+        max_results: 40
+        actions:
+            - { name: 'show', icon: 'eye', label: 'Ver' }
+            - { name: 'edit', icon: 'edit', label: 'Editar' }
+            - { name: 'delete', icon: 'remove', label: 'Borrar' }
+
+    design:
+        color_scheme: 'light'
+
+#        form_theme: ['horizontal', ':form:fields.html.twig']
+
+        menu:
+#            - label: 'Documentos'
+#              icon: 'file-text'
+#              children:
+#                - { entity: 'Documento', icon: 'file', label: 'Documentos' }
+#                - { entity: 'TipoDocumento', icon: 'tag', label: 'Tipos de Documento' }
+#
+#            - label: 'Prestamo Salas'
+#              icon: 'calendar'
+#              children:
+#                - { entity: 'Evento', icon: 'calendar-o', label: 'Eventos' }
+#                - { entity: 'SolicitudSala', icon: 'calendar-check-o', label: 'Solicitudes de Sala' }
+#                - { entity: 'SolicitudSoftware', icon: 'windows', label: 'Solicitudes de Software' }
+#                - { entity: 'PrestamoSemestral', icon: 'calendar-check-o', label: 'PrestamoSemestral' }
+
+#            - label: 'Inventario'
+#              icon: 'archive'
+#              children:
+#                - { entity: 'Elemento', icon: 'plug', label: 'Elementos' }
+#                - { entity: 'Equipo', icon: 'desktop', label: 'Equipos' }
+#                - { entity: 'Lugar', icon: 'map-marker', label: 'Lugares' }
+#                - { entity: 'ObjetoEncontrado', icon: 'search', label: 'Objetos Encontrados' }
+#                - { entity: 'Traslado', icon: 'truck', label: 'Traslados'}
+#                - { label: 'Bajas' }
+#                - { entity: 'Baja', icon: 'times-circle', label: 'Bajas'}
+#                - { entity: 'MotivoBaja', icon: 'tag', label: 'Motivos de Baja' }
+#
+#            - label: 'Prestamos'
+#              icon: 'shopping-bag'
+#              children:
+#                - { entity: 'PrestamoElemento', icon: 'microchip', label: 'Préstamo de Elementos' }
+#                - { entity: 'PrestamoPracticaLibre', icon: 'desktop', label: 'Préstamo Práctica Libre', default: true }
+#
+#            - label: 'Soporte Salas'
+#              icon: 'support'
+#              children:
+#                - { entity: 'Incidencia', icon: 'wrench', label: 'Incidencias' }
+#                - { entity: 'SoporteFacultad', icon: 'ticket', label: 'Soportes Facultad' }
+#                - { entity: 'MantenimientoExterno', icon: 'bug', label: 'Mantenimientos Externos' }
+
+            - label: 'Universidad'
+              icon: 'university'
+              children:
+#                - { entity: 'Asignatura', icon: 'book', label: 'Asignaturas' }
+                - { entity: 'Dependencia', icon: 'phone', label: 'Dependencias' }
+                - { entity: 'Facultad', icon: 'building', label: 'Facultades' }
+                - { entity: 'ProyectoCurricular', icon: 'graduation-cap', label: 'Proyectos Curriculares' }
+
+            - { entity: 'Usuario', icon: 'users', label: 'Usuarios' }
+
+#            - label: 'Reportes'
+#              icon: 'files-o'
+#              children:
+#                - { label: 'Paz y Salvo', icon: 'check-circle', route: 'paz_salvo'}
+#
+#            - label: 'Graficos'
+#              icon: 'line-chart'
+#              children:
+#                - { label: 'Práctica libre por mes', icon: 'bar-chart', route: 'practica_libre_mes'}
+#
+#            - { label: 'Editar Inicio', icon: 'pencil-square-o', route: 'editar_inicio'}
+
     entities:
         Usuario:
             class: App\Entity\Usuario

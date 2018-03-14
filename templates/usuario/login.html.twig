@@ -1,0 +1,75 @@
+{#{% extends 'layout.html.twig' %}#}
+
+{% block page_title %}Iniciar sesión{% endblock %}
+{% block content_title %}Iniciar sesión{% endblock %}
+
+{% block main %}
+    {% if error %}
+        <script>
+            notificacion({{ error.message | trans | json_encode() | raw }}, 'error');
+        </script>
+    {% endif %}
+    <form class="form-signin form-horizontal" action="{{ path('usuario_login_check') }}" method="post">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label">Identificación</label>
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Identificación" class="form-control" id="username" name="_username" value="{{ last_username }}" required autofocus>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Contraseña</label>
+                    <div class="col-sm-10">
+                        <input type="password" placeholder="Contraseña" class="form-control" id="password" name="_password" required>
+                    </div>
+                </div>
+            </div>
+            {#<div class="col-xs-12">#}
+                {#<div class="form-group">#}
+                    {#<div class="col-sm-offset-2 col-sm-10">#}
+                        {#<div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="no_cerrar" name="_remember_me" checked>No cerrar sesión</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button id="submit" class="btn btn-primary" type="submit" name="login">
+                    <span class="fa fa-sign-in" aria-hidden="true"></span>
+                    Iniciar sesión
+                </button>
+                <button class="btn btn-warning" type="reset">
+                    <span class="fa fa-repeat" aria-hidden="true"></span>
+                    Restablecer
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{#{% block body_javascript %}#}
+    {#<script type="text/javascript">#}
+        {#$(function(){#}
+            {#$('#submit').click(function( event ) {#}
+                {#if (grecaptcha.getResponse()) {#}
+                    {#return true;#}
+                {#} else {#}
+                    {#event.preventDefault();#}
+                    {#notificacion('Complete el reCAPTCHA antes de continuar.', 'error');#}
+                {#}#}
+            {#});#}
+        {#})#}
+    {#</script>#}
+{#{% endblock %}#}
