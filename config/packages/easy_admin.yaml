@@ -33,12 +33,12 @@ easy_admin:
 #                - { entity: 'SolicitudSoftware', icon: 'windows', label: 'Solicitudes de Software' }
 #                - { entity: 'PrestamoSemestral', icon: 'calendar-check-o', label: 'PrestamoSemestral' }
 
-#            - label: 'Inventario'
-#              icon: 'archive'
-#              children:
-#                - { entity: 'Elemento', icon: 'plug', label: 'Elementos' }
-#                - { entity: 'Equipo', icon: 'desktop', label: 'Equipos' }
-#                - { entity: 'Lugar', icon: 'map-marker', label: 'Lugares' }
+            - label: 'Inventario'
+              icon: 'archive'
+              children:
+                - { entity: 'Elemento', icon: 'plug', label: 'Elementos' }
+                - { entity: 'Equipo', icon: 'desktop', label: 'Equipos' }
+                - { entity: 'Lugar', icon: 'map-marker', label: 'Lugares' }
 #                - { entity: 'ObjetoEncontrado', icon: 'search', label: 'Objetos Encontrados' }
 #                - { entity: 'Traslado', icon: 'truck', label: 'Traslados'}
 #                - { label: 'Bajas' }
@@ -207,6 +207,104 @@ easy_admin:
             form:
                 fields:
                     - 'nombre'
+
+        Lugar:
+            class: App\Entity\Lugar
+            controller: App\Controller\LugarController
+
+            list:
+                title: 'Lugares'
+
+            form:
+                fields:
+                    - 'id'
+                    - 'nombre'
+                    - 'cantidadEquipos'
+                    - 'descripcion'
+                    - 'visible'
+                    
+        Equipo:
+            class: App\Entity\Equipo
+            controller: App\Controller\EquipoController
+
+            list:
+                title: 'Equipos'
+                sort: 'nombre'
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'lugar' }
+                    - { property: 'prestado', type: 'boolean' }
+                    - { property: 'elementos' }
+
+            show:
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'lugar' }
+                    - { property: 'prestado', type: 'boolean' }
+                    - { property: 'elementos' }
+
+            new:
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' }, placeholder: 'Ninguno' } }
+                    - { property: 'elementos' }
+
+            edit:
+                fields:
+                    - { property: 'nombre', type: 'text', type_options: { disabled: true } }
+                    - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', disabled: true, attr: { 'data-widget': 'select2' } } }
+                    - { property: 'elementos' }
+
+        Elemento:
+            class: App\Entity\Elemento
+            controller: App\Controller\ElementoController
+
+            list:
+                title: 'Elementos'
+                fields:
+                    - 'placa'
+                    - 'serial'
+                    - 'estado'
+                    - 'tipo'
+                    - 'tipoPrestamo'
+                    - 'lugar'
+                    - 'equipo'
+                sort: 'lugar'
+
+            show:
+                fields:
+                    - 'placa'
+                    - 'modelo'
+                    - 'marca'
+                    - 'descripcion'
+                    - 'serial'
+                    - 'tipo'
+                    - 'lugar'
+                    - 'equipo'
+                    - { property: 'fechaIngreso', type: 'date' }
+                    - 'estado'
+                    - 'tipoPrestamo'
+                    - { property: 'observaciones', type: 'raw' }
+                    - 'prestado'
+                    - 'activo'
+
+            form:
+                fields:
+                    - 'placa'
+                    - 'modelo'
+                    - 'marca'
+                    - 'descripcion'
+                    - 'serial'
+                    - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
+                    - { property: 'equipo', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Equipo' } }
+                    - { property: 'fechaIngreso', type: 'date', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'estado', type: 'choice', type_options: { choices:  { 'Bueno': 'Bueno', 'Mantenimiento': 'Mantenimiento', Dañado': 'Dañado', 'Malo': 'Malo', 'Otro': 'Otro' }, attr: { 'data-widget': 'select2' } } }
+                    - { property: 'tipo', type_options: { attr: { placeholder: 'CPU, Teclado, Monitor' } } }
+                    - { property: 'tipoPrestamo', type: 'choice', type_options: { choices:  {  'Nadie': 'Nadie', 'Funcionarios': 'Funcionarios', 'Todos': 'Todos' }, attr: { 'data-widget': 'select2' } } }
+                    - { property: 'observaciones', type: 'ckeditor' }
+                    - { property: 'activo', type: 'checkbox' }
+
+
 
 #        - App\Entity\Product
 #        - App\Entity\Category
