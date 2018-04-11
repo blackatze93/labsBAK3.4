@@ -19,11 +19,11 @@ easy_admin:
 #        form_theme: ['horizontal', ':form:fields.html.twig']
 
         menu:
-#           - label: 'Documentos'
-#              icon: 'file-text'
-#              children:
-#                - { entity: 'Documento', icon: 'file', label: 'Documentos' }
-#                - { entity: 'TipoDocumento', icon: 'tag', label: 'Tipos de Documento' }
+            - label: 'Documentos'
+              icon: 'file-text'
+              children:
+                - { entity: 'Documento', icon: 'file', label: 'Documentos' }
+                - { entity: 'TipoDocumento', icon: 'tag', label: 'Tipos de Documento' }
 #
 #            - label: 'Prestamo Salas'
 #              icon: 'calendar'
@@ -318,6 +318,63 @@ easy_admin:
                 fields:
                     - { property: 'codigo', type: 'text' }
                     - 'nombre'
+
+        Documento:
+            class: App\Entity\Documento
+            controller: App\Controller\DocumentoController
+
+            show:
+                fields:
+                    - 'nombre'
+                    - { property: 'tipoDocumento', label: 'Tipo de documento' }
+                    - { property: 'usuarioSube', label: 'Subido por' }
+                    - { property: 'archivo', template: 'archivo.html.twig', base_path: '%app.path.documentos%' }
+                    - { property: 'fechaSubida', label: 'Fecha de subida' }
+
+            list:
+                title: 'Documentos'
+                fields:
+                    - 'nombre'
+                    - { property: 'tipoDocumento', label: 'Tipo de documento' }
+                    - { property: 'usuarioSube', label: 'Subido por' }
+                    - { property: 'archivo', template: 'archivo.html.twig', base_path: '%app.path.documentos%' }
+                    - { property: 'fechaSubida', label: 'Fecha de subida' }
+                sort: ['fechaSubida', 'DESC']
+
+            form:
+                fields:
+                    - 'nombre'
+                    - { property: 'tipoDocumento', label: 'Tipo de documento' }
+                    - { property: 'archivoFile', type: 'vich_file', label: 'Archivo' }
+
+        TipoDocumento:
+            class: App\Entity\TipoDocumento
+
+            list:
+                title: 'Tipos de Documento'
+                sort: ['nombre', 'ASC']
+                actions:
+                    - { name: 'show', icon: 'eye' }
+                    - { name: 'new', label: 'Crear Tipo de Documento' }
+                fields:
+                    - 'nombre'
+                    - 'documentos'
+
+            show:
+                title: 'Tipo de Documento (#%%entity_id%%)'
+                fields:
+                    - 'nombre'
+                    - 'documentos'
+
+            form:
+                fields:
+                    - 'nombre'
+
+            new:
+                title: 'Crear Tipo de Documento'
+
+            edit:
+                title: 'Modificar Tipo de Documento'
 
 #        - App\Entity\Product
 #        - App\Entity\Category
