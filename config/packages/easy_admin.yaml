@@ -19,7 +19,7 @@ easy_admin:
 #        form_theme: ['horizontal', ':form:fields.html.twig']
 
         menu:
-#            - label: 'Documentos'
+#           - label: 'Documentos'
 #              icon: 'file-text'
 #              children:
 #                - { entity: 'Documento', icon: 'file', label: 'Documentos' }
@@ -61,7 +61,7 @@ easy_admin:
             - label: 'Universidad'
               icon: 'university'
               children:
-#                - { entity: 'Asignatura', icon: 'book', label: 'Asignaturas' }
+                - { entity: 'Asignatura', icon: 'book', label: 'Asignaturas' }
                 - { entity: 'Dependencia', icon: 'phone', label: 'Dependencias' }
                 - { entity: 'Facultad', icon: 'building', label: 'Facultades' }
                 - { entity: 'ProyectoCurricular', icon: 'graduation-cap', label: 'Proyectos Curriculares' }
@@ -304,7 +304,20 @@ easy_admin:
                     - { property: 'observaciones', type: 'ckeditor' }
                     - { property: 'activo', type: 'checkbox' }
 
+        Asignatura:
+            class: App\Entity\Asignatura
 
+            list:
+                title: 'Asignaturas'
+                sort: ['codigo', 'ASC']
+                fields:
+                    - { property: 'codigo', type: 'text' }
+                    - 'nombre'
+
+            show:
+                fields:
+                    - { property: 'codigo', type: 'text' }
+                    - 'nombre'
 
 #        - App\Entity\Product
 #        - App\Entity\Category
