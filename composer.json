@@ -1,6 +1,6 @@
 {
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
     "require": {
         "php": "^7.0.8",
         "ext-iconv": "*",
@@ -13,6 +13,7 @@
         "symfony/maker-bundle": "^1.0",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "^3.4",
+        "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "^3.4",
         "vich/uploader-bundle": "^1.8"
     },
