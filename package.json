@@ -9,5 +9,8 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production"
+    },
+    "dependencies": {
+        "eonasdan-bootstrap-datetimepicker": "^4.17.47"
     }
 }

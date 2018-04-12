@@ -414,8 +414,8 @@ easy_admin:
             new:
                 title: 'Crear Préstamo Práctica Libre'
                 fields:
-                    - { property: 'fechaPrestamo', type: 'date', label: 'Fecha de prestamo', type_options: { widget: 'single_text', html5: false } }
-                    - { property: 'horaEntrada', type: 'time', label: 'Hora de entrada', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'fechaPrestamo', type: 'date', label: 'Fecha de prestamo', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datepicker' } } }
+                    - { property: 'horaEntrada', type: 'time', label: 'Hora de entrada', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'timepicker' } } }
                     - { property: 'lugar' }
                     - { property: 'equipo' }
                     - { property: 'usuarioSolicita', type: 'easyadmin_autocomplete', label: 'Usuario que solicita', type_options: { class: 'App\Entity\Usuario' } }
