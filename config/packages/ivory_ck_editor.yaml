@@ -1,9 +1,27 @@
 ivory_ck_editor:
-    default_config: simple_toolbar
+    jquery: true
+    input_sync: true
+    default_config: full_config
     configs:
-        simple_toolbar:
+        full_config:
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []
             toolbar:
-                - ['Bold', 'Italic', 'Strike', 'Link']
-                - ['BulletedList', 'NumberedList', '-', 'Outdent', 'Indent']
-                - ['Copy', 'Paste', 'PasteFromWord', '-', 'Undo', 'Redo']
-                - ['Source']
+                - { name: 'document', items : [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ] }
+                - { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] }
+                - { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] }
+                - { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] }
+                - { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv', '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] }
+                - { name: 'links', items : [ 'Link','Unlink','Anchor' ] }
+                - { name: 'insert', items : [ 'Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] }
+                - { name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] }
+                - { name: 'colors', items : [ 'TextColor','BGColor' ] }
+                - { name: 'tools', items : [ 'Maximize', 'ShowBlocks' ] }
+
+        simple_config:
+            extraPlugins: "wordcount"
+            toolbar:
+                - { name: "styles", items: ['Bold', 'Italic', 'Strike', 'Link'] }
+                - { name: "lists", items: ['BulletedList', 'NumberedList', '-', 'Outdent', 'Indent'] }
+                - { name: "clipboard", items: ['Copy', 'Paste', 'PasteFromWord', '-', 'Undo', 'Redo'] }
+                - { name: "advanced", items: ['Source'] }
