@@ -19,6 +19,18 @@ class LugarRepository extends ServiceEntityRepository
         parent::__construct($registry, Lugar::class);
     }
 
+    /**
+     * @return array
+     */
+    public function findAllVisibles()
+    {
+        return $this
+            ->createQueryBuilder('lugares')
+            ->where('lugares.visible = 1')
+            ->orderBy('lugares.nombre', 'ASC')
+            ->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Lugar[] Returns an array of Lugar objects
 //     */

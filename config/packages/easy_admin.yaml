@@ -24,7 +24,7 @@ easy_admin:
               children:
                 - { entity: 'Documento', icon: 'file', label: 'Documentos' }
                 - { entity: 'TipoDocumento', icon: 'tag', label: 'Tipos de Documento' }
-#
+
 #            - label: 'Prestamo Salas'
 #              icon: 'calendar'
 #              children:
@@ -44,13 +44,13 @@ easy_admin:
 #                - { label: 'Bajas' }
 #                - { entity: 'Baja', icon: 'times-circle', label: 'Bajas'}
 #                - { entity: 'MotivoBaja', icon: 'tag', label: 'Motivos de Baja' }
-#
-#            - label: 'Prestamos'
-#              icon: 'shopping-bag'
-#              children:
-#                - { entity: 'PrestamoElemento', icon: 'microchip', label: 'Préstamo de Elementos' }
-#                - { entity: 'PrestamoPracticaLibre', icon: 'desktop', label: 'Préstamo Práctica Libre', default: true }
-#
+
+            - label: 'Prestamos'
+              icon: 'shopping-bag'
+              children:
+                - { entity: 'PrestamoElemento', icon: 'microchip', label: 'Préstamo de Elementos' }
+                - { entity: 'PrestamoPracticaLibre', icon: 'desktop', label: 'Préstamo Práctica Libre', default: true }
+
 #            - label: 'Soporte Salas'
 #              icon: 'support'
 #              children:
@@ -375,6 +375,104 @@ easy_admin:
 
             edit:
                 title: 'Modificar Tipo de Documento'
+
+        PrestamoPracticaLibre:
+            class: App\Entity\PrestamoPracticaLibre
+            controller: App\Controller\PrestamoPracticaLibreController
+
+            search:
+                fields: ['equipo']
+                sort: [ 'horaSalida', 'ASC' ]
+
+            list:
+                title: 'Préstamo Práctica Libre'
+                actions:
+                    - { name: 'salir', icon: 'sign-out' }
+                    - { name: 'show', icon: 'eye' }
+                    - { name: 'new', label: 'Crear Préstamo Práctica Libre' }
+                fields:
+                    - { property: 'fechaPrestamo', type: 'date', label: 'Fecha de prestamo' }
+                    - { property: 'horaEntrada', type: 'time', label: 'Hora de entrada' }
+                    - { property: 'equipo' }
+                    - { property: 'usuarioSolicita', label: 'Usuario que solicita' }
+                    - { property: 'horaSalida', type: 'time', label: 'Hora de salida' }
+                    - { property: 'observaciones', type: 'raw' }
+                    - { property: 'usuarioRealiza', label: 'Usuario que realiza' }
+                sort: [ 'horaSalida', 'ASC' ]
+
+            show:
+                title: 'Préstamo Práctica Libre (#%%entity_id%%)'
+                fields:
+                      - { property: 'fechaPrestamo', type: 'date', label: 'Fecha de prestamo' }
+                      - { property: 'horaEntrada', type: 'time', label: 'Hora de entrada' }
+                      - { property: 'equipo' }
+                      - { property: 'usuarioSolicita', label: 'Usuario que solicita' }
+                      - { property: 'horaSalida', type: 'time', label: 'Hora de salida' }
+                      - { property: 'observaciones', type: 'raw' }
+                      - { property: 'usuarioRealiza', label: 'Usuario que realiza' }
+
+            new:
+                title: 'Crear Préstamo Práctica Libre'
+                fields:
+                    - { property: 'fechaPrestamo', type: 'date', label: 'Fecha de prestamo', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'horaEntrada', type: 'time', label: 'Hora de entrada', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'lugar' }
+                    - { property: 'equipo' }
+                    - { property: 'usuarioSolicita', type: 'easyadmin_autocomplete', label: 'Usuario que solicita', type_options: { class: 'App\Entity\Usuario' } }
+                    - { property: 'observaciones', type: 'ckeditor' }
+
+            edit:
+                title: 'Modificar Préstamo Práctica Libre'
+                fields:
+                    - { property: 'fechaPrestamo', type: 'date', label: 'Fecha de prestamo', type_options: { widget: 'single_text', html5: false, disabled: true } }
+                    - { property: 'horaEntrada', type: 'time', label: 'Hora de entrada', type_options: { widget: 'single_text', html5: false, disabled: true } }
+                    - { property: 'lugar' }
+                    - { property: 'equipo' }
+                    - { property: 'usuarioSolicita', type: 'easyadmin_autocomplete', label: 'Usuario que solicita', type_options: { class: 'App\Entity\Usuario', disabled: true } }
+                    - { property: 'horaSalida', type: 'time', label: 'Hora de salida', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'observaciones' }
+
+        PrestamoElemento:
+            class: App\Entity\PrestamoElemento
+            controller: App\Controller\PrestamoElementoController
+
+            list:
+                title: 'Préstamo Elemento'
+                actions:
+                    - { name: 'show', icon: 'eye' }
+                    - { name: 'new', label: 'Crear Préstamo Elemento' }
+                fields:
+                    - { property: 'fechaPrestamo', type: 'datetime', label: 'Fecha de préstamo' }
+                    - { property: 'elemento' }
+                    - { property: 'usuarioSolicita', label: 'Usuario que solicita' }
+                    - { property: 'fechaDevolucion', type: 'datetime', label: 'Fecha de devolución' }
+                    - { property: 'observaciones', type: 'raw' }
+                    - { property: 'usuarioRealiza', label: 'Usuario que realiza' }
+                sort: 'fechaPrestamo'
+
+            show:
+                title: 'Préstamo Elemento (#%%entity_id%%)'
+                fields:
+                    - { property: 'fechaPrestamo', type: 'datetime', label: 'Fecha de préstamo' }
+                    - { property: 'elemento' }
+                    - { property: 'usuarioSolicita', label: 'Usuario que solicita' }
+                    - { property: 'fechaDevolucion', type: 'datetime', label: 'Fecha de devolución' }
+                    - { property: 'observaciones', type: 'raw' }
+                    - { property: 'usuarioRealiza', label: 'Usuario que realiza' }
+
+            form:
+                fields:
+                    - { property: 'fechaPrestamo', type: 'datetime', label: 'Fecha de préstamo', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'elemento', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Elemento' } }
+                    - { property: 'usuarioSolicita', type: 'easyadmin_autocomplete', label: 'Usuario que solicita', type_options: { class: 'App\Entity\Usuario' } }
+                    - { property: 'fechaDevolucion', type: 'datetime', label: 'Fecha de devolución', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'observaciones', type: 'ckeditor' }
+
+            new:
+                title: 'Crear Préstamo Elemento'
+
+            edit:
+                title: 'Modificar Préstamo Elemento'
 
 #        - App\Entity\Product
 #        - App\Entity\Category
