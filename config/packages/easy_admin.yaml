@@ -28,7 +28,7 @@ easy_admin:
             - label: 'Prestamo Salas'
               icon: 'calendar'
               children:
-#                - { entity: 'Evento', icon: 'calendar-o', label: 'Eventos' }
+                - { entity: 'Evento', icon: 'calendar-o', label: 'Eventos' }
                 - { entity: 'SolicitudSala', icon: 'calendar-check-o', label: 'Solicitudes de Sala' }
                 - { entity: 'SolicitudSoftware', icon: 'windows', label: 'Solicitudes de Software' }
 #                - { entity: 'PrestamoSemestral', icon: 'calendar-check-o', label: 'PrestamoSemestral' }
@@ -40,10 +40,10 @@ easy_admin:
                 - { entity: 'Equipo', icon: 'desktop', label: 'Equipos' }
                 - { entity: 'Lugar', icon: 'map-marker', label: 'Lugares' }
 #                - { entity: 'ObjetoEncontrado', icon: 'search', label: 'Objetos Encontrados' }
-#                - { entity: 'Traslado', icon: 'truck', label: 'Traslados'}
-#                - { label: 'Bajas' }
-#                - { entity: 'Baja', icon: 'times-circle', label: 'Bajas'}
-#                - { entity: 'MotivoBaja', icon: 'tag', label: 'Motivos de Baja' }
+                - { entity: 'Traslado', icon: 'truck', label: 'Traslados'}
+                - { label: 'Bajas' }
+                - { entity: 'Baja', icon: 'times-circle', label: 'Bajas'}
+                - { entity: 'MotivoBaja', icon: 'tag', label: 'Motivos de Baja' }
 
             - label: 'Prestamos'
               icon: 'shopping-bag'
@@ -731,6 +731,93 @@ easy_admin:
                     - { property: 'grupo', type: 'text', type_options: { required: false } }
                     - { property: 'observaciones', type: 'ckeditor' }
 
+        Baja:
+            class: App\Entity\Baja
+            show:
+                fields:
+                    - { property: 'fecha', type: 'date' }
+                    - { property: 'usuarioRealiza', label: 'Realizada por' }
+                    - { property: 'cedulaRecibe' }
+                    - { property: 'nombreRecibe' }
+                    - { property: 'bajaElementos', label: 'Elementos' }
+            list:
+                title: 'Bajas'
+                fields:
+                    - { property: 'fecha', type: 'date' }
+                    - { property: 'usuarioRealiza', label: 'Realizada por' }
+                    - { property: 'cedulaRecibe' }
+                    - { property: 'nombreRecibe' }
+                    - { property: 'bajaElementos', label: 'Elementos' }
+                sort: ['fecha', 'DESC']
+
+            form:
+                fields:
+                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'usuarioRealiza', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Usuario' }, label: 'Realizada por' }
+                    - { type: 'group', label: 'Recibido por' }
+                    - { property: 'cedulaRecibe', label: 'Cédula' }
+                    - { property: 'nombreRecibe', label: 'Nombre' }
+                    - { type: 'group', label: 'Elementos' }
+                    - { property: 'bajaElementos', label: ' ', type: 'collection', type_options: { entry_type: 'App\Form\Type\BajaElementoType', by_reference: false } }
+
+        MotivoBaja:
+            class: App\Entity\MotivoBaja
+
+            list:
+                title: 'Motivos de Baja'
+                sort: ['nombre', 'ASC']
+                actions:
+                    - { name: 'show', icon: 'eye' }
+                    - { name: 'new', label: 'Crear Motivo de Baja' }
+                fields:
+                    - 'nombre'
+                    - 'bajas'
+
+            show:
+                title: 'Motivo de Baja (#%%entity_id%%)'
+                fields:
+                    - 'nombre'
+                    - 'bajas'
+
+            form:
+                fields:
+                    - 'nombre'
+
+            new:
+                title: 'Crear Motivo de Baja'
+
+            edit:
+                title: 'Modificar Motivo de Baja'
+
+        Traslado:
+            class: App\Entity\Traslado
+            show:
+                fields:
+                    - { property: 'fecha', type: 'date' }
+                    - { property: 'usuarioRealiza', label: 'Realizado por' }
+                    - { property: 'lugarDestino', label: 'Lugar de destino' }
+                    - { property: 'usuarioRecibe', label: 'Recibido por' }
+                    - { property: 'trasladoElementos', label: 'Elementos' }
+
+            list:
+                title: 'Traslados'
+                fields:
+                    - { property: 'fecha', type: 'date' }
+                    - { property: 'usuarioRealiza', label: 'Realizado por' }
+                    - { property: 'lugarDestino', label: 'Lugar de destino' }
+                    - { property: 'usuarioRecibe', label: 'Recibido por' }
+                    - { property: 'trasladoElementos', label: 'Elementos' }
+                sort: ['fecha', 'DESC']
+
+            form:
+                fields:
+                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'usuarioRealiza', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Usuario' }, label: 'Realizado por' }
+                    - { type: 'group', label: '' }
+                    - { property: 'lugarDestino', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } }, label: 'Lugar de destino' }
+                    - { property: 'usuarioRecibe', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Usuario' }, label: 'Recibido por' }
+                    - { type: 'group', label: 'Elementos' }
+                    - { property: 'trasladoElementos', label: ' ', type: 'collection', type_options: { entry_type: 'App\Form\Type\TrasladoElementoType', by_reference: false } }
 
 
 #        - App\Entity\Product
