@@ -19,6 +19,24 @@ class EventoRepository extends ServiceEntityRepository
         parent::__construct($registry, Evento::class);
     }
 
+    /**
+     * @param array $criteria
+     *
+     * @return array
+     */
+    public function findRangoEvento(array $criteria)
+    {
+        return $this
+            ->createQueryBuilder('eventos')
+            ->where(':horaInicio >= eventos.horaInicio AND :horaInicio < eventos.horaFin')
+            ->orWhere(':horaFin > eventos.horaInicio AND :horaFin <= eventos.horaFin')
+            ->andWhere('eventos.lugar = :lugar')
+            ->andWhere('eventos.fecha = :fecha')
+            ->setParameters($criteria)
+            ->getQuery()->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Evento[] Returns an array of Evento objects
 //     */

@@ -19,6 +19,26 @@ class SolicitudSalaRepository extends ServiceEntityRepository
         parent::__construct($registry, SolicitudSala::class);
     }
 
+    /**
+     * @param array $criteria
+     *
+     * @return array
+     */
+    public function findRangoEvento(array $criteria)
+    {
+        $em = $this->getEntityManager()->getRepository('AppBundle:Evento');
+
+        return $em
+            ->createQueryBuilder('eventos')
+            ->where(':horaInicio >= eventos.horaInicio AND :horaInicio < eventos.horaFin')
+            ->orWhere(':horaFin > eventos.horaInicio AND :horaFin <= eventos.horaFin')
+            ->andWhere('eventos.lugar = :lugar')
+            ->andWhere('eventos.fecha = :fecha')
+            ->setParameters($criteria)
+            ->getQuery()->getResult()
+            ;
+    }
+
 //    /**
 //     * @return SolicitudSala[] Returns an array of SolicitudSala objects
 //     */

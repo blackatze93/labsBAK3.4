@@ -31,7 +31,7 @@ easy_admin:
                 - { entity: 'Evento', icon: 'calendar-o', label: 'Eventos' }
                 - { entity: 'SolicitudSala', icon: 'calendar-check-o', label: 'Solicitudes de Sala' }
                 - { entity: 'SolicitudSoftware', icon: 'windows', label: 'Solicitudes de Software' }
-#                - { entity: 'PrestamoSemestral', icon: 'calendar-check-o', label: 'PrestamoSemestral' }
+                - { entity: 'PrestamoSemestral', icon: 'calendar-check-o', label: 'PrestamoSemestral' }
 
             - label: 'Inventario'
               icon: 'archive'
@@ -39,7 +39,7 @@ easy_admin:
                 - { entity: 'Elemento', icon: 'plug', label: 'Elementos' }
                 - { entity: 'Equipo', icon: 'desktop', label: 'Equipos' }
                 - { entity: 'Lugar', icon: 'map-marker', label: 'Lugares' }
-#                - { entity: 'ObjetoEncontrado', icon: 'search', label: 'Objetos Encontrados' }
+                - { entity: 'ObjetoEncontrado', icon: 'search', label: 'Objetos Encontrados' }
                 - { entity: 'Traslado', icon: 'truck', label: 'Traslados'}
                 - { label: 'Bajas' }
                 - { entity: 'Baja', icon: 'times-circle', label: 'Bajas'}
@@ -819,6 +819,54 @@ easy_admin:
                     - { type: 'group', label: 'Elementos' }
                     - { property: 'trasladoElementos', label: ' ', type: 'collection', type_options: { entry_type: 'App\Form\Type\TrasladoElementoType', by_reference: false } }
 
+        ObjetoEncontrado:
+            class: App\Entity\ObjetoEncontrado
+            controller: App\Controller\ObjetoEncontradoController
+
+            list:
+                title: 'Objetos Encontrados'
+                actions:
+                    - { name: 'show', icon: 'eye' }
+                    - { name: 'new', label: 'Crear Objeto Encontrado' }
+                fields:
+                    - 'id'
+                    - { property: 'descripcion', type: 'raw' }
+                    - 'lugar'
+                    - { property: 'fechaRegistro', label: 'Fecha de registro' }
+                    - { property: 'entregado', type: 'boolean' }
+                    - { property: 'fechaEntrega', label: 'Fecha de entrega' }
+
+            show:
+                title: 'Objeto Encontrado (#%%entity_id%%)'
+                fields:
+                    - 'id'
+                    - { property: 'descripcion', type: 'raw' }
+                    - 'lugar'
+                    - { property: 'fechaRegistro', label: 'Fecha de registro' }
+                    - { property: 'usuarioRegistra', label: 'Registrado por' }
+                    - 'entregado'
+                    - { property: 'usuarioReclama', label: 'Entregado a' }
+                    - { property: 'fechaEntrega', label: 'Fecha de entrega' }
+                    - { property: 'usuarioEntrega', label: 'Entregado por' }
+
+            form:
+               fields:
+                    - { property: 'descripcion', type: 'ckeditor' }
+                    - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de registro', type_options: { widget: 'single_text' } }
+                    - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
+                    - 'entregado'
+                    - { property: 'usuarioReclama', type: 'easyadmin_autocomplete', label: 'Entregado a', type_options: { class: 'App\Entity\Usuario' } }
+
+            new:
+                title: 'Crear Objeto Encontrado'
+
+            edit:
+                title: 'Modificar Objeto Encontrado'
+
+        PrestamoSemestral:
+            class: App\Entity\PrestamoSemestral
+            list:
+                title: 'Prestamo Semestral'
 
 #        - App\Entity\Product
 #        - App\Entity\Category
