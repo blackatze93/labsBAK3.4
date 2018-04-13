@@ -25,12 +25,12 @@ easy_admin:
                 - { entity: 'Documento', icon: 'file', label: 'Documentos' }
                 - { entity: 'TipoDocumento', icon: 'tag', label: 'Tipos de Documento' }
 
-#            - label: 'Prestamo Salas'
-#              icon: 'calendar'
-#              children:
+            - label: 'Prestamo Salas'
+              icon: 'calendar'
+              children:
 #                - { entity: 'Evento', icon: 'calendar-o', label: 'Eventos' }
-#                - { entity: 'SolicitudSala', icon: 'calendar-check-o', label: 'Solicitudes de Sala' }
-#                - { entity: 'SolicitudSoftware', icon: 'windows', label: 'Solicitudes de Software' }
+                - { entity: 'SolicitudSala', icon: 'calendar-check-o', label: 'Solicitudes de Sala' }
+                - { entity: 'SolicitudSoftware', icon: 'windows', label: 'Solicitudes de Software' }
 #                - { entity: 'PrestamoSemestral', icon: 'calendar-check-o', label: 'PrestamoSemestral' }
 
             - label: 'Inventario'
@@ -596,6 +596,141 @@ easy_admin:
 
             edit:
                 title: 'Modificar Mantenimiento Externo'
+
+        SolicitudSala:
+            class: App\Entity\SolicitudSala
+            controller: App\Controller\SolicitudSalaController
+            disabled_actions: ['new']
+
+            list:
+                title: 'Solicitudes de Sala'
+                fields:
+                    - { property: 'fecha', type: 'date' }
+                    - { property: 'horaInicio', type: 'time' }
+                    - { property: 'horaFin', type: 'time' }
+                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud' }
+                    - { property: 'usuarioRealiza', label: 'Usuario que realiza' }
+                    - { property: 'estado' }
+                    - { property: 'lugar' }
+                    - { property: 'fechaRespuesta', type: 'datetime', label: 'Fecha de respuesta' }
+                sort: 'fechaSolicitud'
+
+            show:
+                title: 'Solicitud de Sala'
+                fields:
+                    - { property: 'fecha', type: 'date' }
+                    - { property: 'horaInicio', type: 'time' }
+                    - { property: 'horaFin', type: 'time' }
+                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud' }
+                    - { property: 'estado' }
+                    - { property: 'usuarioRealiza', label: 'Usuario que realiza' }
+                    - { property: 'lugar' }
+                    - { property: 'observaciones', type: 'raw' }
+                    - { property: 'fechaRespuesta', type: 'datetime', label: 'Fecha de respuesta' }
+                    - { property: 'usuarioResponde', label: 'Usuario que responde' }
+
+            edit:
+                title: 'Modificar Solicitud de Sala'
+                fields:
+                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false, disabled: true } }
+                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', disabled: true } }
+                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', disabled: true } }
+                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud', type_options: { widget: 'single_text', disabled: true } }
+                    - { property: 'estado', type: 'choice', type_options: { choices:  { 'Pendiente': 'Pendiente', 'Aprobada': 'Aprobada' }, attr: { 'data-widget': 'select2' } } }
+                    - { property: 'usuarioRealiza', label: 'Usuario que realiza', type_options: { disabled: true } }
+                    - { property: 'lugar',  type_options: { disabled: true } }
+                    - { property: 'observaciones', type: 'ckeditor', type_options: { disabled: true } }
+
+        SolicitudSoftware:
+            class: App\Entity\SolicitudSoftware
+            controller: App\Controller\SolicitudSoftwareController
+            disabled_actions: ['new']
+
+            list:
+                title: 'Solicitudes de Software'
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud' }
+                    - { property: 'usuarioRealiza', label: 'Usuario que realiza' }
+                    - { property: 'estado' }
+                    - { property: 'fechaRespuesta', type: 'datetime', label: 'Fecha de respuesta' }
+                sort: 'fechaSolicitud'
+
+            show:
+                title: 'Solicitud de Software'
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud' }
+                    - { property: 'estado' }
+                    - { property: 'lugar' }
+                    - { property: 'usuarioRealiza', label: 'Usuario que realiza' }
+                    - { property: 'observaciones', type: 'raw' }
+                    - { property: 'fechaRespuesta', type: 'datetime', label: 'Fecha de respuesta' }
+                    - { property: 'usuarioResponde', label: 'Usuario que responde' }
+
+            edit:
+                title: 'Modificar Solicitud de Software'
+                fields:
+                    - { property: 'nombre' }
+                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud', type_options: { widget: 'single_text', disabled: true } }
+                    - { property: 'estado', type: 'choice', type_options: { choices:  { 'Pendiente': 'Pendiente', 'Aprobada': 'Aprobada' }, attr: { 'data-widget': 'select2' } } }
+                    - { property: 'lugar',  type_options: { disabled: true } }
+                    - { property: 'usuarioRealiza', label: 'Usuario que realiza', type_options: { disabled: true } }
+                    - { property: 'observaciones', type: 'ckeditor', type_options: { disabled: true } }
+
+        Evento:
+            class: App\Entity\Evento
+            controller: App\Controller\EventoController
+            list:
+                title: 'Eventos'
+                fields:
+                    - 'id'
+                    - 'lugar'
+                    - { property: 'fecha', type: 'date' }
+                    - { property: 'horaInicio', type: 'time' }
+                    - { property: 'horaFin', type: 'time' }
+                    - 'tipo'
+                    - 'asignatura'
+                    - 'grupo'
+                    - { property: 'observaciones', type: 'raw' }
+
+            show:
+                fields:
+                    - 'lugar'
+                    - { property: 'fecha', type: 'date' }
+                    - { property: 'horaInicio', type: 'time' }
+                    - { property: 'horaFin', type: 'time' }
+                    - 'tipo'
+                    - 'asignatura'
+                    - 'grupo'
+                    - { property: 'observaciones', type: 'raw' }
+                    - { property: 'usuarioRegistra', label: 'Usuario que registra' }
+
+            new:
+                form_options: { validation_groups: ['Default', 'New'] }
+                fields:
+                    - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
+                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'semanas', type: 'integer' }
+                    - { property: 'tipo', type: 'choice', type_options: { choices:  { 'Clase': 'Clase', 'Practica Libre': 'Practica Libre','Mantenimiento': 'Mantenimiento', 'Reserva': 'Reserva', 'Otro': 'Otro', }, attr: { 'data-widget': 'select2' } } }
+                    - { property: 'asignatura', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Asignatura' } }
+                    - { property: 'grupo', type: 'text' }
+                    - { property: 'observaciones', type: 'ckeditor' }
+
+            edit:
+                form_options: { validation_groups: ['Default'] }
+                fields:
+                    - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
+                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'tipo', type: 'choice', type_options: { choices:  { 'Clase': 'Clase', 'Practica Libre': 'Practica Libre','Mantenimiento': 'Mantenimiento', 'Reserva': 'Reserva', 'Otro': 'Otro', }, attr: { 'data-widget': 'select2' } } }
+                    - { property: 'asignatura', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Asignatura', required: false } }
+                    - { property: 'grupo', type: 'text', type_options: { required: false } }
+                    - { property: 'observaciones', type: 'ckeditor' }
+
 
 
 #        - App\Entity\Product

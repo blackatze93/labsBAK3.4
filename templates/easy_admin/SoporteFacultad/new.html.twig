@@ -1,0 +1,31 @@
+{% extends '@EasyAdmin/default/new.html.twig' %}
+
+{% block main %}
+    {% block entity_form %}
+            {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_label(form.fechaRegistro, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fechaRegistro) }}
+                        <span class="text-danger">{{ form_errors(form.fechaRegistro) }}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.dependencia, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(form.dependencia) }}
+                        <a target="_blank" href="{{ path('easyadmin', {'action': 'new', 'entity': 'Dependencia'}) }}">Crear nueva dependencia</a>
+                        <span class="text-danger">{{ form_errors(form.dependencia) }}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.descripcionProblema, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                    <div class="col-sm-10">
+                        {{ form_widget(form.descripcionProblema) }}
+                        <span class="text-danger">{{ form_errors(form.descripcionProblema) }}</span>
+                    </div>
+                </div>
+                {{ form_widget(form) }}
+            {{ form_end(form) }}
+    {% endblock entity_form %}
+{% endblock %}
