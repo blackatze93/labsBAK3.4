@@ -1,0 +1,79 @@
+{% extends '@EasyAdmin/default/new.html.twig' %}
+
+{% block main %}
+    {% block entity_form %}
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.fechaPrestamo, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.fechaPrestamo) }}
+                <span class="text-danger">{{ form_errors(form.fechaPrestamo) }}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.horaEntrada, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.horaEntrada) }}
+                <span class="text-danger">{{ form_errors(form.horaEntrada) }}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.lugar, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.lugar) }}
+                <span class="text-danger">{{ form_errors(form.lugar) }}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.equipo, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.equipo) }}
+                <span class="text-danger">{{ form_errors(form.equipo) }}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.usuarioSolicita, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.usuarioSolicita) }}
+                <a target="_blank" href="{{ path('easyadmin', {'action': 'new', 'entity': 'Usuario'}) }}">Crear nuevo usuario</a>
+                <span class="text-danger">{{ form_errors(form.usuarioSolicita) }}</span>
+            </div>
+        </div>
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endblock entity_form %}
+{% endblock %}
+
+{% block body_javascript %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        var $lugar = $('#prestamopracticalibre_lugar');
+        // When sport gets selected ...
+        $lugar.change(function() {
+            // ... retrieve the corresponding form.
+            var $form = $(this).closest('form');
+            // Simulate form data, but only include the selected sport value.
+            var data = {};
+            data[$lugar.attr('name')] = $lugar.val();
+            // Submit data via AJAX to the form's action path.
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : data,
+                success: function(html) {
+                    $('#prestamopracticalibre_equipo').select2('destroy');
+                    // Replace current position field ...
+                    $('#prestamopracticalibre_equipo').replaceWith(
+                        // ... with the returned one from the AJAX response.
+                        $(html).find('#prestamopracticalibre_equipo')
+                    );
+                    $('#prestamopracticalibre_equipo').select2({
+                        theme: 'bootstrap'
+                    });
+                    // Position field now displays the appropriate positions.
+                }
+            });
+        });
+    </script>
+{% endblock %}

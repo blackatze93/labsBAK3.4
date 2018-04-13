@@ -1,0 +1,35 @@
+{% extends '@EasyAdmin/default/new.html.twig' %}
+
+{% block body_javascript %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        var $lugar = $('#equipo_lugar');
+        // When sport gets selected ...
+        $lugar.change(function() {
+            // ... retrieve the corresponding form.
+            var $form = $(this).closest('form');
+            // Simulate form data, but only include the selected sport value.
+            var data = {};
+            data[$lugar.attr('name')] = $lugar.val();
+            // Submit data via AJAX to the form's action path.
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : data,
+                success: function(html) {
+                    $('#equipo_elementos').select2('destroy');
+                    // Replace current position field ...
+                    $('#equipo_elementos').replaceWith(
+                        // ... with the returned one from the AJAX response.
+                        $(html).find('#equipo_elementos')
+                    );
+                    $('#equipo_elementos').select2({
+                        theme: 'bootstrap'
+                    });
+                    // Position field now displays the appropriate positions.
+                }
+            });
+        });
+    </script>
+{% endblock %}
