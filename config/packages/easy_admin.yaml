@@ -51,12 +51,12 @@ easy_admin:
                 - { entity: 'PrestamoElemento', icon: 'microchip', label: 'Préstamo de Elementos' }
                 - { entity: 'PrestamoPracticaLibre', icon: 'desktop', label: 'Préstamo Práctica Libre', default: true }
 
-#            - label: 'Soporte Salas'
-#              icon: 'support'
-#              children:
-#                - { entity: 'Incidencia', icon: 'wrench', label: 'Incidencias' }
-#                - { entity: 'SoporteFacultad', icon: 'ticket', label: 'Soportes Facultad' }
-#                - { entity: 'MantenimientoExterno', icon: 'bug', label: 'Mantenimientos Externos' }
+            - label: 'Soporte Salas'
+              icon: 'support'
+              children:
+                - { entity: 'Incidencia', icon: 'wrench', label: 'Incidencias' }
+                - { entity: 'SoporteFacultad', icon: 'ticket', label: 'Soportes Facultad' }
+                - { entity: 'MantenimientoExterno', icon: 'bug', label: 'Mantenimientos Externos' }
 
             - label: 'Universidad'
               icon: 'university'
@@ -473,6 +473,130 @@ easy_admin:
 
             edit:
                 title: 'Modificar Préstamo Elemento'
+
+        Incidencia:
+            class: App\Entity\Incidencia
+            controller: App\Controller\IncidenciaController
+
+            list:
+                title: 'Incidencias'
+                fields:
+                    - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de registro' }
+                    - { property: 'descripcionProblema', type: 'raw', css_class: 'col-sm-2'}
+                    - { property: 'estado' }
+                    - { property: 'fechaAtencion', type: 'datetime', label: 'Fecha de atención' }
+                    - { property: 'usuarioRegistra', label: 'Usuario que registra' }
+                    - { property: 'usuarioAtiende', label: 'Usuario que atiende' }
+                sort: 'fechaRegistro'
+
+            show:
+                fields:
+                    - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de registro' }
+                    - { property: 'descripcionProblema', type: 'raw' }
+                    - { property: 'usuarioRegistra', label: 'Usuario que registra' }
+                    - { property: 'elemento' }
+                    - { property: 'equipo' }
+                    - { property: 'estado' }
+                    - { property: 'fechaAtencion', type: 'datetime', label: 'Fecha de atención' }
+                    - { property: 'descripcionSolucion', type: 'raw' }
+                    - { property: 'usuarioAtiende', label: 'Usuario que atiende' }
+
+            new:
+                fields:
+                    - { property: 'descripcionProblema', type: 'ckeditor' }
+                    - { property: 'elemento', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Elemento' } }
+                    - { property: 'equipo', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Equipo' } }
+
+            edit:
+                fields:
+                    - { type: 'group', label: 'Problema' }
+                    - { property: 'fechaRegistro', type: 'datetime', type_options: { widget: single_text, read_only: true } }
+                    - { property: 'descripcionProblema', type: 'ckeditor', type_options: { read_only: true } }
+                    - { property: 'elemento', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Elemento' } }
+                    - { property: 'equipo', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Equipo' } }
+                    - { type: 'group', label: 'Solución' }
+                    - { property: 'estado', type: 'choice', type_options: { choices:  { 'Pendiente': 'Pendiente', 'Atendida': 'Atendida' }, attr: { 'data-widget': 'select2' } } }
+                    - { property: 'descripcionSolucion', type: 'ckeditor' }
+
+        SoporteFacultad:
+            class: App\Entity\SoporteFacultad
+            controller: App\Controller\SoporteFacultadController
+
+            list:
+                title: 'Soportes Facultad'
+                actions:
+                    - { name: 'show', icon: 'eye' }
+                    - { name: 'new', label: 'Crear Soporte Facultad' }
+                fields:
+                    - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de Registro' }
+                    - { property: 'dependencia' }
+                    - { property: 'descripcionProblema', type: 'raw', css_class: 'col-sm-2'}
+                    - { property: 'usuarioRegistra', label: 'Usuario que Registra' }
+                sort: 'fechaRegistro'
+
+            show:
+                title: 'Soporte Facultad'
+                fields:
+                    - { property: 'id' }
+                    - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de Registro' }
+                    - { property: 'dependencia' }
+                    - { property: 'descripcionProblema', type: 'raw' }
+                    - { property: 'usuarioRegistra', label: 'Usuario que Registra' }
+
+            form:
+                fields:
+                    - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de Registro', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'dependencia' }
+                    - { property: 'descripcionProblema', type: 'ckeditor' }
+
+            new:
+                title: 'Nuevo Soporte Facultad'
+
+            edit:
+                title: 'Modificar Soporte Facultad'
+
+        MantenimientoExterno:
+            class: App\Entity\MantenimientoExterno
+
+            list:
+                title: 'Mantenimientos Externos'
+                actions:
+                    - { name: 'show', icon: 'eye' }
+                    - { name: 'new', label: 'Crear Mantenimiento Externo' }
+                fields:
+                    - { property: 'fecha', type: 'datetime' }
+                    - { property: 'nombreEmpresa', label: 'Nombre de la empresa' }
+                    - { property: 'cedulaTecnico', label: 'Cédula del técnico' }
+                    - { property: 'nombreTecnico', label: 'Nombre del técnico' }
+                    - { property: 'descripcion', type: 'raw' }
+                    - { property: 'usuarioAtiende', label: 'Usuario que atiende' }
+                sort: 'fecha'
+
+            show:
+                title: 'Mantenimiento Externo (#%%entity_id%%)'
+                fields:
+                    - { property: 'fecha', type: 'datetime' }
+                    - { property: 'nombreEmpresa', label: 'Nombre de la empresa' }
+                    - { property: 'cedulaTecnico', label: 'Cédula del técnico' }
+                    - { property: 'nombreTecnico', label: 'Nombre del técnico' }
+                    - { property: 'descripcion', type: 'raw' }
+                    - { property: 'usuarioAtiende', label: 'Usuario que atiende' }
+
+            form:
+                fields:
+                    - { property: 'fecha', type: 'datetime', type_options: { widget: 'single_text' } }
+                    - { property: 'nombreEmpresa', label: 'Nombre de la empresa' }
+                    - { property: 'cedulaTecnico', label: 'Cédula del técnico' }
+                    - { property: 'nombreTecnico', label: 'Nombre del técnico' }
+                    - { property: 'descripcion', type: 'ckeditor' }
+                    - { property: 'usuarioAtiende', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Usuario' } }
+
+            new:
+                title: 'Crear Mantenimiento Externo'
+
+            edit:
+                title: 'Modificar Mantenimiento Externo'
+
 
 #        - App\Entity\Product
 #        - App\Entity\Category
