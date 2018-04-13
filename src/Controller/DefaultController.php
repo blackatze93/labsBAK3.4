@@ -49,7 +49,7 @@ class DefaultController extends Controller
         ));
 
         // Se genera el formulario que permite crear el paz y salvo
-        $form = $this->createForm('App\Form\Type\PaginaType', $pagina);
+        $form = $this->createForm('App\Form\PaginaType', $pagina);
 
         // Dejamos que symfony maneje el Request
         $form->handleRequest($request);

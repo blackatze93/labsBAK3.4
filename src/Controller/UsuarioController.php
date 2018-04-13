@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Usuario;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\HttpFoundation\Request;
@@ -216,4 +216,112 @@ class UsuarioController extends BaseAdminController
         ));
     }
 
+    /**
+     * Metodo que lista los objetos encontrados en el sitio web.
+     *
+     * @Security("has_role('ROLE_DOCENTE') or has_role('ROLE_FUNCIONARIO')")
+     * @Route("/mis_solicitudes/", name="mis_solicitudes")
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function misSolicitudesAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $solicitudesSala = $em->getRepository('AppBundle:SolicitudSala')->findBy(array(
+            'usuarioRealiza' => $this->getUser(),
+        ));
+
+        $solicitudesSoftware = $em->getRepository('AppBundle:SolicitudSoftware')->findBy(array(
+            'usuarioRealiza' => $this->getUser(),
+        ));
+
+        return $this->render('mis_solicitudes.html.twig', array(
+            'solicitudesSala' => $solicitudesSala,
+            'solicitudesSoftware' => $solicitudesSoftware,
+        ));
+    }
+
+    // moodle desde el usuario 4200 en el documento
+    /**
+     * Metodo que carga usuarios de moodle.
+     *
+     * @Route("/cargar", name="cargar")
+     */
+    public function cargarAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = 'SELECT * FROM moodle';
+
+        $statement = $em->getConnection()->prepare($query);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+
+        $batchSize = 20;
+        $i = 1;
+
+        foreach ($result as $user) {
+            $users = $em->getRepository('AppBundle\Entity\Usuario')->findOneByCodigo($user['codigo']);
+            if ($users) {
+                $query2 = 'DELETE FROM moodle WHERE moodle.codigo = :codigo';
+                $statement2 = $em->getConnection()->prepare($query2);
+                $statement2->bindValue('codigo', $user['codigo']);
+
+                $statement2->execute();
+            }
+
+            if (!$users) {
+                $usuario = new Usuario();
+                $usuario->setTipoDocumento('C.C.');
+                $usuario->setDocumento($user['documento']);
+                $usuario->setCodigo($user['codigo']);
+                $usuario->setNombre($user['nombre']);
+                $usuario->setApellido($user['apellido']);
+                $usuario->setEmail($user['email']);
+
+                // Se obtiene el encoder, que es el metodo de encriptacion de la entidad usuario
+                $encoder = $this->get('security.encoder_factory')->getEncoder($usuario);
+                // Se codifica el password mediante el encoder
+                $passwordCodificado = $encoder->encodePassword($user['codigo'], null);
+                // Se establece el password en la entidad mediante el medoto setPassword
+                $usuario->setPassword($passwordCodificado);
+
+                $usuario->setEstado('Paz y Salvo');
+                $usuario->setActivo(false);
+                $usuario->setFechaCreacion(new \DateTime());
+                $usuario->setRol('ROLE_ESTUDIANTE');
+
+                $em->persist($usuario);
+
+                if (($i % $batchSize) === 0) {
+                    $em->flush();
+                    $em->clear(); // Detaches all objects from Doctrine!
+                }
+
+                $i++;
+            }
+        }
+        $em->flush(); //Persist objects that did not make up an entire batch
+        $em->clear();
+
+        // foreach ($result as $user) {
+        //     $usuario = new Usuario();
+        //     $usuario->setCodigo($user['codigo']);
+        //     $em->persist($usuario);
+        // }
+        // $em->flush();
+
+        $pagina = $em->getRepository('AppBundle:Pagina')->findOneBy(array(
+            'id' => '1',
+        ));
+
+        echo "gato";
+
+        return $this->render('index.html.twig', array(
+            'pagina' => $pagina,
+        ));
+    }
 }
