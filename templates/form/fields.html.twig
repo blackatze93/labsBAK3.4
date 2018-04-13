@@ -1,0 +1,112 @@
+{%- block button_widget -%}
+    {% set attr = attr|merge({class: (attr.class|default('btn-default') ~ ' btn')|trim}) %}
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain)|raw }}</button>
+{%- endblock button_widget -%}
+
+{# EasyAdminAutocomplete form type #}
+{% block easyadmin_autocomplete_widget %}
+    {{ form_widget(form.autocomplete, {
+        attr: attr|merge({
+            'data-easyadmin-autocomplete-max-results': easyadmin_config('show.max_results'),
+            'data-easyadmin-autocomplete-url' : path('easyadmin', {
+                action: 'autocomplete',
+                entity: autocomplete_entity_name,
+            })|raw })
+    })
+    }}
+{% endblock easyadmin_autocomplete_widget %}
+
+{# Errors #}
+{% block form_errors %}
+    {% set error_count = errors|length %}
+    {% if error_count >= 1 %}
+        <div class="error-block">
+            <span class="label label-danger">{{ 'errors'|transchoice(error_count, {}, 'EasyAdminBundle') }}</span>
+            {% if error_count == 1 %}
+                <b class="text-danger"> {{ errors|first.message }}</b>
+            {% else %}
+                <ul>
+                    {% for error in errors %}
+                        <li class="text-danger"><b>{{ error.message }}</b></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock form_errors %}
+
+{# Rows #}
+
+{% block form_row -%}
+    {% spaceless %}
+        {% set _field_type = easyadmin.field.fieldType|default('default') %}
+        <div class="form-group {% if (not compound or force_error|default(false)) and not valid %}has-error{% endif %} field-{{ block_prefixes|slice(-2)|first }}">
+            {% set _field_label = easyadmin.field['label']|default(null) %}
+            {{ form_label(form, _field_label, { translation_domain: 'EasyAdminBundle' }) }}
+            <div class="{{ block('form_group_class') }}">
+                {{ form_widget(form) }}
+
+                {{ form_errors(form) }}
+
+                {% if easyadmin.field.help|default('') != '' %}
+                    <span class="help-block"><i class="fa fa-info-circle"></i> {{ easyadmin.field.help|trans(domain = 'EasyAdminBundle')|raw }}</span>
+                {% endif %}
+            </div>
+        </div>
+    {% endspaceless %}
+{%- endblock form_row %}
+
+{% block collection_row %}
+    {{ block('form_row') }}
+
+    {% if allow_add|default(false) %}
+        {% set js_add_item %}
+            $(function() {
+            if (event.preventDefault) event.preventDefault(); else event.returnValue = false;
+
+            var collection = $('#{{ id }}');
+            // Use a counter to avoid having the same index more than once
+            var numItems = collection.data('count') || collection.children('div.form-group').length;
+
+            collection.prev('.collection-empty').remove();
+
+            var newItem = collection.attr('data-prototype')
+            .replace(/\>__name__label__\</g, '>' + numItems + '<')
+            .replace(/_{{ name }}___name__/g, '_{{ name }}_' + numItems)
+            .replace(/{{ name }}\]\[__name__\]/g, '{{ name }}][' + numItems + ']')
+            ;
+
+            // Increment the counter and store it in the collection
+            collection.data('count', ++numItems);
+
+            collection.append(newItem).trigger('easyadmin.collection.item-added');
+            });
+        {% endset %}
+
+        {% set js_select2 %}
+            $(function() {
+            $('#main').find('form select[data-widget=select2]').select2({
+            theme: 'bootstrap',
+            language: 'es'
+            });
+            });
+        {% endset %}
+
+        <div class="text-right field-collection-action">
+            <a href="#" onclick="{{ js_add_item|raw }}; {{ js_select2|raw }}; createAutoCompleteFields()" class="text-primary">
+                <i class="fa fa-plus-square"></i>
+                {{ (form|length == 0 ? 'action.add_new_item' : 'action.add_another_item')|trans({}, 'EasyAdminBundle') }}
+            </a>
+        </div>
+    {% endif %}
+{% endblock collection_row %}
