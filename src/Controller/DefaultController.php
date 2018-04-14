@@ -134,13 +134,13 @@ class DefaultController extends Controller
                 $pazSalvo = 'no_registrado';
             }
 
-            return $this->render('paz_y_salvo.html.twig', array(
+            return $this->render('paz_salvo.html.twig', array(
                 'form' => $form->createView(),
                 'pazSalvo' => $pazSalvo,
             ));
         }
 
-        return $this->render('paz_y_salvo.html.twig', array(
+        return $this->render('paz_salvo.html.twig', array(
             'form' => $form->createView(),
         ));
     }

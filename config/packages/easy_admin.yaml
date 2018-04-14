@@ -16,7 +16,7 @@ easy_admin:
     design:
         color_scheme: 'light'
 
-#        form_theme: ['horizontal', ':form:fields.html.twig']
+        form_theme: ['horizontal', ':form:fields.html.twig']
 
         menu:
             - label: 'Documentos'
@@ -31,7 +31,7 @@ easy_admin:
                 - { entity: 'Evento', icon: 'calendar-o', label: 'Eventos' }
                 - { entity: 'SolicitudSala', icon: 'calendar-check-o', label: 'Solicitudes de Sala' }
                 - { entity: 'SolicitudSoftware', icon: 'windows', label: 'Solicitudes de Software' }
-                - { entity: 'PrestamoSemestral', icon: 'calendar-check-o', label: 'PrestamoSemestral' }
+#                - { entity: 'PrestamoSemestral', icon: 'calendar-check-o', label: 'PrestamoSemestral' }
 
             - label: 'Inventario'
               icon: 'archive'
@@ -68,17 +68,17 @@ easy_admin:
 
             - { entity: 'Usuario', icon: 'users', label: 'Usuarios' }
 
-#            - label: 'Reportes'
-#              icon: 'files-o'
-#              children:
-#                - { label: 'Paz y Salvo', icon: 'check-circle', route: 'paz_salvo'}
-#
-#            - label: 'Graficos'
-#              icon: 'line-chart'
-#              children:
-#                - { label: 'Práctica libre por mes', icon: 'bar-chart', route: 'practica_libre_mes'}
-#
-#            - { label: 'Editar Inicio', icon: 'pencil-square-o', route: 'editar_inicio'}
+            - label: 'Reportes'
+              icon: 'files-o'
+              children:
+                - { label: 'Paz y Salvo', icon: 'check-circle', route: 'paz_salvo'}
+
+            - label: 'Graficos'
+              icon: 'line-chart'
+              children:
+                - { label: 'Práctica libre por mes', icon: 'bar-chart', route: 'practica_libre_mes'}
+
+            - { label: 'Editar Inicio', icon: 'pencil-square-o', route: 'editar_inicio'}
 
     entities:
         Usuario:
