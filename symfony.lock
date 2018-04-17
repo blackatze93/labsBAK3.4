@@ -107,6 +107,9 @@
     "kriswallsmith/assetic": {
         "version": "v1.4.0"
     },
+    "mpdf/mpdf": {
+        "version": "v7.0.3"
+    },
     "nikic/php-parser": {
         "version": "v4.0.0"
     },
@@ -118,6 +121,9 @@
     },
     "pagerfanta/pagerfanta": {
         "version": "v1.0.5"
+    },
+    "paragonie/random_compat": {
+        "version": "v2.0.12"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -142,6 +148,9 @@
             "version": "4.0",
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
         }
+    },
+    "setasign/fpdi": {
+        "version": "1.6.2"
     },
     "studio-42/elfinder": {
         "version": "2.1.37"
@@ -340,6 +349,9 @@
     },
     "symfony/yaml": {
         "version": "v3.4.4"
+    },
+    "tfox/mpdf-port-bundle": {
+        "version": "2.0.0"
     },
     "twig/extensions": {
         "version": "1.0",

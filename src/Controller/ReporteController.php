@@ -56,7 +56,7 @@ class ReporteController extends Controller
 
             // Si la opcion que selecciono fue generar y el usuario esta en paz y salvo procedemos a generarlo
             if ($form->get('generar')->isClicked() && $pazSalvo == 'si') {
-                return $this->crearPazSalvo($usuario, $this->get('tfox.mpdfport'), $this->container->get('templating.helper.assets'));
+                return $this->crearPazSalvo($usuario, $this->get('t_fox_mpdf_port.pdf'), $this->get('assets.packages'));
             }
 
             return $this->render('reporte/paz_salvo.html.twig', array(
@@ -93,7 +93,7 @@ class ReporteController extends Controller
 
         $escudo = $helper_assets->getUrl('img/escudo.png');
         $sigud = $helper_assets->getUrl('img/sigud.png');
-        $css = $helper_assets->getUrl('css/paz_y_salvo.css');
+        $css = $helper_assets->getUrl('css/paz_salvo.css');
 
         $html = '
                 <!DOCTYPE html>
@@ -122,12 +122,13 @@ class ReporteController extends Controller
                         </tr>
                     </table> 
                     <br><br><br><br><br>
-                    <p align="justify">Los <b>Laboratorios de Informática</b> de la Facultad Tecnológica, hacen constar que el 
+                    <p align="justify">
+                        Los <b>Laboratorios de Informática</b> de la Facultad Tecnológica, hacen constar que el 
                         estudiante <b>'.$usuario->getNombre().' '.$usuario->getApellido().'</b> identificado con código <b>'
-            .$usuario->getCodigo().'</b>, se encuentra a paz y salvo por todo concepto en el mencionado laboratorio.
+                        .$usuario->getCodigo().'</b>, se encuentra a paz y salvo por todo concepto en el mencionado laboratorio.
                         <br><br><br><br><br>El presente certificado se expide por solicitud del interesado a los '
-            .$dia.' día(s) del mes de '.$mes.' de '.$anio
-            .'.<br><br><br><br><br><br><br>
+                        .$dia.' día(s) del mes de '.$mes.' de '.$anio
+                        .'.<br><br><br><br><br><br><br>
                         Atentamente,<br><br><br><br><br><br><br>
             
                         _____________________________<br>
@@ -139,8 +140,7 @@ class ReporteController extends Controller
                 </body>
                 </html>
                 ';
-        $response = $mpdfService->generatePdfResponse($html);
 
-        return $response;
+        return new \TFox\MpdfPortBundle\Response\PDFResponse($mpdfService->generatePdf($html));
     }
 }

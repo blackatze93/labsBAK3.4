@@ -15,4 +15,5 @@ return [
     Ivory\CKEditorBundle\IvoryCKEditorBundle::class => ['all' => true],
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     FM\ElfinderBundle\FMElfinderBundle::class => ['all' => true],
+    TFox\MpdfPortBundle\TFoxMpdfPortBundle::class => ['all' => true],
 ];

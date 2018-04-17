@@ -1,0 +1,40 @@
+table{
+    border:1px solid #000;
+    border-collapse:collapse;
+    width: 100%;
+}
+table td, table th{
+    border:1px solid #000;
+}
+body{
+    position: relative;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+.encabezado{
+    font-weight:bold;
+}
+.logoUD, .logoSIGUD{
+    width: 25%;
+}
+.titulo{
+    text-align: center;
+    width:500px;
+    height:20px;
+}
+.Cod{
+    width:150px;
+    height:20px;
+    padding-left: 10px;
+}
+.MP{
+    text-align: center;
+    width:150px;
+    height:20px;
+}
+.PG{
+    text-align: center;
+    width:150px;
+    height:30px;
+}
