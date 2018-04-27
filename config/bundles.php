@@ -16,4 +16,5 @@ return [
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     FM\ElfinderBundle\FMElfinderBundle::class => ['all' => true],
     TFox\MpdfPortBundle\TFoxMpdfPortBundle::class => ['all' => true],
+    Ob\HighchartsBundle\ObHighchartsBundle::class => ['all' => true],
 ];

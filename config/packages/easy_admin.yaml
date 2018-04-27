@@ -16,7 +16,7 @@ easy_admin:
     design:
         color_scheme: 'light'
 
-        form_theme: ['horizontal', ':form:fields.html.twig']
+        form_theme: ['horizontal', 'form/fields.html.twig']
 
         menu:
             - label: 'Documentos'

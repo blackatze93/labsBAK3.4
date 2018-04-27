@@ -9,7 +9,8 @@ Encore
 
     // define the assets of the project
     // .addEntry('app', './assets/js/app.js')
-    .addEntry('easyadmin', './assets/js/easyadmin.js')
+    .addEntry('datetimepicker', './assets/js/datetimepicker.js')
+    .addEntry('highcharts', './assets/js/highcharts.js')
 
     // allow sass/scss files to be processed
     // .enableSassLoader()

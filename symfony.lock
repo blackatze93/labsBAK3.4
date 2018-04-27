@@ -1,4 +1,7 @@
 {
+    "beberlei/doctrineextensions": {
+        "version": "v1.0.21"
+    },
     "behat/transliterator": {
         "version": "v1.2.0"
     },
@@ -113,6 +116,9 @@
     "nikic/php-parser": {
         "version": "v4.0.0"
     },
+    "ob/highcharts-bundle": {
+        "version": "1.6"
+    },
     "ocramius/package-versions": {
         "version": "1.3.0"
     },
@@ -190,6 +196,9 @@
     },
     "symfony/event-dispatcher": {
         "version": "v3.4.4"
+    },
+    "symfony/expression-language": {
+        "version": "v3.4.8"
     },
     "symfony/filesystem": {
         "version": "v3.4.4"
@@ -379,5 +388,8 @@
     },
     "zendframework/zend-eventmanager": {
         "version": "3.2.0"
+    },
+    "zendframework/zend-json": {
+        "version": "3.1.0"
     }
 }

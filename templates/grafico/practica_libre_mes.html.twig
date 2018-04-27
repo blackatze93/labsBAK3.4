@@ -2,6 +2,11 @@
 
 {% form_theme form 'form/fields.html.twig' %}
 
+{% block head_javascript %}
+    {{ parent() }}
+    <script src="{{ asset('build/highcharts.js') }}"></script>
+{% endblock %}
+
 {% block page_title %}Práctica libre por mes{% endblock %}
 {% block content_title %}Práctica libre por mes{% endblock %}
 
@@ -48,7 +53,7 @@
 
     <script type="text/javascript">
         {% if chart is defined %}
-        {{ chart(chart) }}
+            {{ chart(chart) }}
         {% endif %}
     </script>
 {% endblock %}
