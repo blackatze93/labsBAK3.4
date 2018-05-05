@@ -14,6 +14,9 @@ easy_admin:
             - { name: 'delete', icon: 'remove', label: 'Borrar' }
 
     design:
+        assets:
+            favicon: 'favicon.ico'
+
         color_scheme: 'light'
 
         form_theme: ['horizontal', 'form/fields.html.twig']
@@ -297,7 +300,7 @@ easy_admin:
                     - 'serial'
                     - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
                     - { property: 'equipo', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Equipo' } }
-                    - { property: 'fechaIngreso', type: 'date', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'fechaIngreso', type: 'date', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datepicker' } } }
                     - { property: 'estado', type: 'choice', type_options: { choices:  { 'Bueno': 'Bueno', 'Mantenimiento': 'Mantenimiento', Dañado': 'Dañado', 'Malo': 'Malo', 'Otro': 'Otro' }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'tipo', type_options: { attr: { placeholder: 'CPU, Teclado, Monitor' } } }
                     - { property: 'tipoPrestamo', type: 'choice', type_options: { choices:  {  'Nadie': 'Nadie', 'Funcionarios': 'Funcionarios', 'Todos': 'Todos' }, attr: { 'data-widget': 'select2' } } }
@@ -424,12 +427,12 @@ easy_admin:
             edit:
                 title: 'Modificar Préstamo Práctica Libre'
                 fields:
-                    - { property: 'fechaPrestamo', type: 'date', label: 'Fecha de prestamo', type_options: { widget: 'single_text', html5: false, disabled: true } }
-                    - { property: 'horaEntrada', type: 'time', label: 'Hora de entrada', type_options: { widget: 'single_text', html5: false, disabled: true } }
+                    - { property: 'fechaPrestamo', type: 'date', label: 'Fecha de prestamo', type_options: { widget: 'single_text', html5: false, disabled: true, attr: { 'data-widget': 'datepicker' } } }
+                    - { property: 'horaEntrada', type: 'time', label: 'Hora de entrada', type_options: { widget: 'single_text', html5: false, disabled: true, attr: { 'data-widget': 'timepicker' } } }
                     - { property: 'lugar' }
                     - { property: 'equipo' }
                     - { property: 'usuarioSolicita', type: 'easyadmin_autocomplete', label: 'Usuario que solicita', type_options: { class: 'App\Entity\Usuario', disabled: true } }
-                    - { property: 'horaSalida', type: 'time', label: 'Hora de salida', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'horaSalida', type: 'time', label: 'Hora de salida', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'timepicker' } } }
                     - { property: 'observaciones' }
 
         PrestamoElemento:
@@ -462,10 +465,10 @@ easy_admin:
 
             form:
                 fields:
-                    - { property: 'fechaPrestamo', type: 'datetime', label: 'Fecha de préstamo', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'fechaPrestamo', type: 'datetime', label: 'Fecha de préstamo', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datetimepicker' } } }
                     - { property: 'elemento', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Elemento' } }
                     - { property: 'usuarioSolicita', type: 'easyadmin_autocomplete', label: 'Usuario que solicita', type_options: { class: 'App\Entity\Usuario' } }
-                    - { property: 'fechaDevolucion', type: 'datetime', label: 'Fecha de devolución', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'fechaDevolucion', type: 'datetime', label: 'Fecha de devolución', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datetimepicker' } } }
                     - { property: 'observaciones', type: 'ckeditor' }
 
             new:
@@ -545,7 +548,7 @@ easy_admin:
 
             form:
                 fields:
-                    - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de Registro', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de Registro', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datetimepicker' } } }
                     - { property: 'dependencia' }
                     - { property: 'descripcionProblema', type: 'ckeditor' }
 
@@ -584,7 +587,7 @@ easy_admin:
 
             form:
                 fields:
-                    - { property: 'fecha', type: 'datetime', type_options: { widget: 'single_text' } }
+                    - { property: 'fecha', type: 'datetime', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datetimepicker' } } }
                     - { property: 'nombreEmpresa', label: 'Nombre de la empresa' }
                     - { property: 'cedulaTecnico', label: 'Cédula del técnico' }
                     - { property: 'nombreTecnico', label: 'Nombre del técnico' }
@@ -633,9 +636,9 @@ easy_admin:
                 title: 'Modificar Solicitud de Sala'
                 fields:
                     - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false, disabled: true } }
-                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', disabled: true } }
-                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', disabled: true } }
-                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud', type_options: { widget: 'single_text', disabled: true } }
+                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', html5: false, disabled: true } }
+                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', html5: false, disabled: true } }
+                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud', type_options: { widget: 'single_text', html5: false, disabled: true } }
                     - { property: 'estado', type: 'choice', type_options: { choices:  { 'Pendiente': 'Pendiente', 'Aprobada': 'Aprobada' }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'usuarioRealiza', label: 'Usuario que realiza', type_options: { disabled: true } }
                     - { property: 'lugar',  type_options: { disabled: true } }
@@ -710,9 +713,9 @@ easy_admin:
                 form_options: { validation_groups: ['Default', 'New'] }
                 fields:
                     - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
-                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false } }
-                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', html5: false } }
-                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datepicker' } } }
+                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'timepicker' } } }
+                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'timepicker' } } }
                     - { property: 'semanas', type: 'integer' }
                     - { property: 'tipo', type: 'choice', type_options: { choices:  { 'Clase': 'Clase', 'Practica Libre': 'Practica Libre','Mantenimiento': 'Mantenimiento', 'Reserva': 'Reserva', 'Otro': 'Otro', }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'asignatura', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Asignatura' } }
@@ -723,9 +726,9 @@ easy_admin:
                 form_options: { validation_groups: ['Default'] }
                 fields:
                     - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
-                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false } }
-                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', html5: false } }
-                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datepicker' } } }
+                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'timepicker' } } }
+                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'timepicker' } } }
                     - { property: 'tipo', type: 'choice', type_options: { choices:  { 'Clase': 'Clase', 'Practica Libre': 'Practica Libre','Mantenimiento': 'Mantenimiento', 'Reserva': 'Reserva', 'Otro': 'Otro', }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'asignatura', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Asignatura', required: false } }
                     - { property: 'grupo', type: 'text', type_options: { required: false } }
@@ -752,7 +755,7 @@ easy_admin:
 
             form:
                 fields:
-                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datepicker' } } }
                     - { property: 'usuarioRealiza', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Usuario' }, label: 'Realizada por' }
                     - { type: 'group', label: 'Recibido por' }
                     - { property: 'cedulaRecibe', label: 'Cédula' }
@@ -811,7 +814,7 @@ easy_admin:
 
             form:
                 fields:
-                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false } }
+                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datepicker' } } }
                     - { property: 'usuarioRealiza', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Usuario' }, label: 'Realizado por' }
                     - { type: 'group', label: '' }
                     - { property: 'lugarDestino', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } }, label: 'Lugar de destino' }
@@ -852,7 +855,7 @@ easy_admin:
             form:
                fields:
                     - { property: 'descripcion', type: 'ckeditor' }
-                    - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de registro', type_options: { widget: 'single_text' } }
+                    - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de registro', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datetimepicker' } } }
                     - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
                     - 'entregado'
                     - { property: 'usuarioReclama', type: 'easyadmin_autocomplete', label: 'Entregado a', type_options: { class: 'App\Entity\Usuario' } }
