@@ -44,7 +44,7 @@ class SolicitudSoftwareController extends BaseAdminController
         $form = $this->createFormBuilder($solicitudSoftware)
             ->add('nombre')
             ->add('lugar', EntityType::class, array(
-                'class' => 'AppBundle\Entity\Lugar',
+                'class' => 'App\Entity\Lugar',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('lugar')
                         ->where('lugar.visible = true');

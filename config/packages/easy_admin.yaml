@@ -635,10 +635,10 @@ easy_admin:
             edit:
                 title: 'Modificar Solicitud de Sala'
                 fields:
-                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false, disabled: true } }
-                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', html5: false, disabled: true } }
-                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', html5: false, disabled: true } }
-                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud', type_options: { widget: 'single_text', html5: false, disabled: true } }
+                    - { property: 'fecha', type: 'date', type_options: { widget: 'single_text', html5: false, disabled: true, attr: { data-widget: 'datepicker' } } }
+                    - { property: 'horaInicio', type: 'time', type_options: { widget: 'single_text', html5: false, disabled: true, attr: { data-widget: 'timepicker' } } }
+                    - { property: 'horaFin', type: 'time', type_options: { widget: 'single_text', html5: false, disabled: true, attr: { data-widget: 'timepicker' } } }
+                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud', type_options: { widget: 'single_text', html5: false, disabled: true, attr: { data-widget: 'datetimepicker' } } }
                     - { property: 'estado', type: 'choice', type_options: { choices:  { 'Pendiente': 'Pendiente', 'Aprobada': 'Aprobada' }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'usuarioRealiza', label: 'Usuario que realiza', type_options: { disabled: true } }
                     - { property: 'lugar',  type_options: { disabled: true } }
@@ -675,7 +675,7 @@ easy_admin:
                 title: 'Modificar Solicitud de Software'
                 fields:
                     - { property: 'nombre' }
-                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud', type_options: { widget: 'single_text', disabled: true } }
+                    - { property: 'fechaSolicitud', type: 'datetime', label: 'Fecha de solicitud', type_options: { widget: 'single_text', html5: false, disabled: true, attr: { data-widget: 'datetimepicker' } } }
                     - { property: 'estado', type: 'choice', type_options: { choices:  { 'Pendiente': 'Pendiente', 'Aprobada': 'Aprobada' }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'lugar',  type_options: { disabled: true } }
                     - { property: 'usuarioRealiza', label: 'Usuario que realiza', type_options: { disabled: true } }

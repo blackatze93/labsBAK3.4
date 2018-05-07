@@ -1,0 +1,51 @@
+{% extends 'easy_admin/layout.html.twig' %}
+
+{% form_theme form 'form/fields.html.twig' %}
+
+{% block page_title %}Solicitud de Software{% endblock %}
+{% block content_title %}Solicitud de Software{% endblock %}
+
+{% block main %}
+    {{ form_start(form, {'attr': { 'class': 'form-horizontal'}}) }}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.nombre, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.nombre, {'attr' : {'class' : 'form-control'}}) }}
+                    <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.lugar, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.lugar, {'attr' : {'class' : 'form-control'}}) }}
+                    <span class="text-danger">{{ form_errors(form.lugar) }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                {{ form_label(form.observaciones, null, {'label_attr' : {'class' : 'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.observaciones, {'attr' : {'class' : 'form-control'}}) }}
+                    <span class="text-danger">{{ form_errors(form.observaciones) }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-10">
+            {{ form_widget(form.crear, {'attr' : {'class' : 'btn btn-primary'}, 'label' : '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear'}) }}
+            {{ form_widget(form.restablecer, {'attr' : {'class' : 'btn btn-warning'}, 'label' : '<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Restablecer'}) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block body_javascript %}
+    {{ include('@EasyAdmin/default/includes/_select2_widget.html.twig') }}
+{% endblock %}
+

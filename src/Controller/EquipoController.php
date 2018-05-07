@@ -33,7 +33,7 @@ class EquipoController extends BaseAdminController
         $builder = parent::createEntityFormBuilder($entity, $view);
 
         $formModifier = function (FormInterface $form, Lugar $lugar = null, Equipo $equipo = null) {
-            $em = $this->getDoctrine()->getManager()->getRepository('AppBundle:Elemento');
+            $em = $this->getDoctrine()->getManager()->getRepository('App:Elemento');
 
             $elementos = null === $lugar ? array() : $em->findBy(
                 array(
@@ -48,7 +48,7 @@ class EquipoController extends BaseAdminController
             );
 
             $form->add('elementos', EntityType::class, array(
-                'class' => 'AppBundle\Entity\Elemento',
+                'class' => 'App\Entity\Elemento',
                 'placeholder' => 'Ninguno',
                 'required' => false,
                 'choices' => $elementos,

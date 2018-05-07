@@ -26,7 +26,7 @@ class SolicitudSalaRepository extends ServiceEntityRepository
      */
     public function findRangoEvento(array $criteria)
     {
-        $em = $this->getEntityManager()->getRepository('AppBundle:Evento');
+        $em = $this->getEntityManager()->getRepository('App:Evento');
 
         return $em
             ->createQueryBuilder('eventos')

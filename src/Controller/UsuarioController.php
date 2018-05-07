@@ -230,11 +230,11 @@ class UsuarioController extends BaseAdminController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $solicitudesSala = $em->getRepository('AppBundle:SolicitudSala')->findBy(array(
+        $solicitudesSala = $em->getRepository('App:SolicitudSala')->findBy(array(
             'usuarioRealiza' => $this->getUser(),
         ));
 
-        $solicitudesSoftware = $em->getRepository('AppBundle:SolicitudSoftware')->findBy(array(
+        $solicitudesSoftware = $em->getRepository('App:SolicitudSoftware')->findBy(array(
             'usuarioRealiza' => $this->getUser(),
         ));
 
@@ -264,7 +264,7 @@ class UsuarioController extends BaseAdminController
         $i = 1;
 
         foreach ($result as $user) {
-            $users = $em->getRepository('AppBundle\Entity\Usuario')->findOneByCodigo($user['codigo']);
+            $users = $em->getRepository('App\Entity\Usuario')->findOneByCodigo($user['codigo']);
             if ($users) {
                 $query2 = 'DELETE FROM moodle WHERE moodle.codigo = :codigo';
                 $statement2 = $em->getConnection()->prepare($query2);
@@ -314,7 +314,7 @@ class UsuarioController extends BaseAdminController
         // }
         // $em->flush();
 
-        $pagina = $em->getRepository('AppBundle:Pagina')->findOneBy(array(
+        $pagina = $em->getRepository('App:Pagina')->findOneBy(array(
             'id' => '1',
         ));
 

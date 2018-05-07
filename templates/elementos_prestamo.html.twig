@@ -1,0 +1,27 @@
+{% extends 'easy_admin/layout.html.twig' %}
+
+{% block page_title %}Elementos para Préstamo{% endblock %}
+{% block content_title %}Elementos para Préstamo{% endblock %}
+
+{% block main %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Marca</th>
+                <th>Descripcion</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for elemento in elementos %}
+                <tr>
+                    <td>{{ elemento.tipo }}</td>
+                    <td>{{ elemento.marca  }}</td>
+                    <td>{{ elemento.descripcion }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
