@@ -1,0 +1,27 @@
+{% extends 'easy_admin/layout.html.twig' %}
+
+{% block page_title %}Objetos Encontrados{% endblock %}
+{% block content_title %}Objetos Encontrados{% endblock %}
+
+{% block main %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Descripcion</th>
+                <th>Lugar</th>
+                <th>Fecha</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for objeto in objetos %}
+                <tr>
+                    <td>{{ objeto.descripcion }}</td>
+                    <td>{{ objeto.lugar  }}</td>
+                    <td>{{ objeto.fechaRegistro|date('Y-m-d H:i') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

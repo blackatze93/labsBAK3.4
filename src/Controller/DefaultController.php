@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -94,10 +95,9 @@ class DefaultController extends Controller
     {
         // Se genera el formulario que permite crear el paz y salvo
         $form = $this->createFormBuilder()
-            ->add('codigo', IntegerType::class, array(
+            ->add('codigo', TextType::class, array(
                 'constraints' => array(
                     new NotBlank(),
-                    new Type('integer'),
                     new Range(array('min' => 1)),
                 ),
             ))
@@ -128,7 +128,7 @@ class DefaultController extends Controller
                 if ($form->get('generar')->isClicked() && $pazSalvo == 'si') {
                     $reporte = new ReporteController();
 
-                    return $reporte->crearPazSalvo($usuario, $this->get('tfox.mpdfport'), $this->container->get('templating.helper.assets'));
+                    return $reporte->crearPazSalvo($usuario, $this->get('t_fox_mpdf_port.pdf'), $this->container->get('assets.packages'));
                 }
             } else {
                 $pazSalvo = 'no_registrado';
