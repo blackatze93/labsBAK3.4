@@ -12,6 +12,7 @@ Encore
     .addEntry('datetimepicker', './assets/js/datetimepicker.js')
     .addEntry('highcharts', './assets/js/highcharts.js')
     .addEntry('noty', './assets/js/noty.js')
+    .addEntry('app', './assets/js/app.js')
 
     // allow sass/scss files to be processed
     // .enableSassLoader()

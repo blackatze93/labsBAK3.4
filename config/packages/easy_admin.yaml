@@ -512,12 +512,12 @@ easy_admin:
 
             edit:
                 fields:
-                    - { type: 'group', label: 'Problema' }
-                    - { property: 'fechaRegistro', type: 'datetime', type_options: { widget: single_text, read_only: true } }
-                    - { property: 'descripcionProblema', type: 'ckeditor', type_options: { read_only: true } }
+                    - { type: 'group', collapsible: true, expanded: false, label: 'Problema' }
+                    - { property: 'fechaRegistro', type: 'datetime', type_options: { widget: single_text, html5: false, disabled: true, attr: { data-widget: 'datetimepicker' } } }
+                    - { property: 'descripcionProblema', type: 'ckeditor', type_options: { disabled: true } }
                     - { property: 'elemento', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Elemento' } }
                     - { property: 'equipo', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Equipo' } }
-                    - { type: 'group', label: 'Solución' }
+                    - { type: 'group', collapsible: true, expanded: true, label: 'Solución' }
                     - { property: 'estado', type: 'choice', type_options: { choices:  { 'Pendiente': 'Pendiente', 'Atendida': 'Atendida' }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'descripcionSolucion', type: 'ckeditor' }
 

@@ -1,0 +1,22 @@
+.bootstrap-datetimepicker-widget .btn,
+.bootstrap-datetimepicker-widget .btn:hover,
+.bootstrap-datetimepicker-widget .btn:active,
+.bootstrap-datetimepicker-widget .btn:focus,
+.bootstrap-datetimepicker-widget .btn:active:hover {
+    background: none;
+    padding: 0;
+    color: #205081;
+}
+
+.required:after {
+    content: " *";
+    color: #D42124 !important;
+}
+
+.text-danger {
+    color: #D42124 !important;
+}
+
+.main-header .logo {
+    width: auto !important;
+}
