@@ -1,0 +1,7 @@
+{% for tipo, mensajes in app.session.flashbag.all() %}
+    {% for mensaje in mensajes %}
+        <script>
+            notificacion({{ mensaje|json_encode()|raw }}, {{ tipo|json_encode()|raw }});
+        </script>
+    {% endfor %}
+{% endfor %}
