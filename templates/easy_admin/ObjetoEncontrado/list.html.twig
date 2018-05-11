@@ -1,0 +1,36 @@
+{% extends 'easy_admin/list.html.twig' %}
+
+{% block bulk_delete %}
+    <div class="button-action">
+        <a class="btn btn-danger bulk-delete" href="#" target="_self">
+            Eliminar todos
+        </a>
+    </div>
+{% endblock %}
+
+{% block body_javascript %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(function(){
+            $('.bulk-delete').on('click', function(e) {
+                e.preventDefault();
+
+                $('#modal-delete').modal({ backdrop: true, keyboard: true })
+                    .off('click', '#modal-delete-button')
+                    .on('click', '#modal-delete-button', function () {
+                        $.ajax({
+                            'url': '{{ path('encontrados_bulk_delete') }}',
+                            'type': 'POST',
+                            'success': function(data, textStatus, jqXHR) {
+                                location.reload();
+                            },
+                            'error': function(jqXHR, textStatus, errorThrown) {
+                                notificacion('No se pudieron borrar los objetos encontrados.', 'error');
+                            }
+                        });
+                    });
+            });
+        });
+    </script>
+{% endblock %}
