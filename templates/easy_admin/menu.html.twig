@@ -1,0 +1,51 @@
+{% set route = app.request.attributes.get('_route') %}
+{% if route %}
+    {% set route_admin = 'admin' in path(route) %}
+{% else %}
+    {% set route_admin = null %}
+{% endif %}
+
+<section class="sidebar">
+    {% block main_menu_wrapper %}
+        <ul class="sidebar-menu">
+            <li class="{{ route == 'index' ? 'active' }}">
+                <a href="{{ path('index') }}" >
+                    <i class="fa fa-home"></i><span>Inicio</span>
+                </a>
+            </li>
+        </ul>
+        {% if is_granted('ROLE_ADMIN') and route_admin %}
+            {{ include('@EasyAdmin/default/menu.html.twig') }}
+        {% elseif not route_admin %}
+            <ul class="sidebar-menu">
+                <li class="{{ route == 'calendario' ? 'active' }}">
+                    <a href="{{ path('calendario') }}">
+                        <i class="fa fa-calendar"></i><span>Calendario</span>
+                    </a>
+                </li>
+                {% if is_granted('ROLE_DOCENTE') or is_granted('ROLE_FUNCIONARIO') %}
+                    <li class="{{ route == 'mis_solicitudes' ? 'active' }}">
+                        <a href="{{ path('mis_solicitudes') }}">
+                            <i class="fa fa-map-marker"></i><span>Mis Solicitudes</span>
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="{{ route == 'elementos_prestamo' ? 'active' }}">
+                    <a href="{{ path('elementos_prestamo') }}">
+                        <i class="fa fa-plug"></i><span>Elementos Préstamo</span>
+                    </a>
+                </li>
+                <li class="{{ route == 'objetos_encontrados' ? 'active' }}">
+                    <a href="{{ path('objetos_encontrados') }}" >
+                        <i class="fa fa-search"></i><span>Objetos Encontrados</span>
+                    </a>
+                </li>
+                <li class="{{ route == 'paz_y_salvo' ? 'active' }}">
+                    <a href="{{ path('paz_y_salvo') }}" >
+                        <i class="fa fa-file-pdf-o"></i><span>Paz y Salvos</span>
+                    </a>
+                </li>
+            </ul>
+        {% endif %}
+    {% endblock main_menu_wrapper %}
+</section>
