@@ -41,18 +41,18 @@ class UsuarioType extends AbstractType
             ))
             ->add('rol', ChoiceType::class, array(
                 'choices' => array(
-                    'ROLE_FUNCIONARIO' => 'ROLE_FUNCIONARIO',
-                    'ROLE_DOCENTE' => 'ROLE_DOCENTE',
-                    'ROLE_ESTUDIANTE' => 'ROLE_ESTUDIANTE',
+                    'Funcionario' => 'ROLE_FUNCIONARIO',
+                    'Docente' => 'ROLE_DOCENTE',
+                    'Estudiante' => 'ROLE_ESTUDIANTE',
                 ),
                 'choices_as_values' => true,
             ))
             ->add('cargo')
             ->add('dependencia', null, array(
-                'empty_value' => 'Ninguna',
+                'placeholder' => 'Ninguna',
             ))
             ->add('proyectoCurricular', null, array(
-                'empty_value' => 'Ninguno',
+                'placeholder' => 'Ninguno',
             ))
             ->add('restablecer', ResetType::class)
         ;

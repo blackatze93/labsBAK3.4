@@ -115,13 +115,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12">
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
-                </div>
-            </div>
-        </div>
+        {#<div class="col-xs-12">#}
+            {#<div class="form-group">#}
+                {#<div class="col-sm-offset-2 col-sm-10">#}
+                    {#<div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
     </div>
     <div class="row">
         <div class="col-sm-offset-2 col-sm-10">
@@ -135,16 +135,16 @@
 {% block body_javascript %}
     {{ include('@EasyAdmin/default/includes/_select2_widget.html.twig') }}
 
-    <script type="text/javascript">
-        $(function(){
-            $('#usuario_crear').click(function( event ) {
-                if (grecaptcha.getResponse()) {
-                    return true;
-                } else {
-                    event.preventDefault();
-                    notificacion('Complete el reCAPTCHA antes de continuar.', 'error');
-                }
-            });
-        })
-    </script>
+    {#<script type="text/javascript">#}
+        {#$(function(){#}
+            {#$('#usuario_crear').click(function( event ) {#}
+                {#if (grecaptcha.getResponse()) {#}
+                    {#return true;#}
+                {#} else {#}
+                    {#event.preventDefault();#}
+                    {#notificacion('Complete el reCAPTCHA antes de continuar.', 'error');#}
+                {#}#}
+            {#});#}
+        {#})#}
+    {#</script>#}
 {% endblock %}

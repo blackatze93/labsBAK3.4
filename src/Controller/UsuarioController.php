@@ -131,7 +131,7 @@ class UsuarioController extends BaseAdminController
 
         $usuario = $this->getUser();
 
-        $form = $this->createForm('App\Form\Type\UsuarioType', $usuario);
+        $form = $this->createForm('App\Form\UsuarioType', $usuario);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -177,7 +177,7 @@ class UsuarioController extends BaseAdminController
         $usuario = new Usuario();
 
         // Se genera el form por medio de la evento UsuarioType que ya tiene todos los campos
-        $form = $this->createForm('App\Form\Type\UsuarioType', $usuario, array(
+        $form = $this->createForm('App\Form\UsuarioType', $usuario, array(
             'accion' => 'registro',
             'validation_groups' => array('Default', 'Registro'),
         ));
