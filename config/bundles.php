@@ -17,4 +17,5 @@ return [
     FM\ElfinderBundle\FMElfinderBundle::class => ['all' => true],
     TFox\MpdfPortBundle\TFoxMpdfPortBundle::class => ['all' => true],
     Ob\HighchartsBundle\ObHighchartsBundle::class => ['all' => true],
+    FOS\JsRoutingBundle\FOSJsRoutingBundle::class => ['all' => true],
 ];
