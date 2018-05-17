@@ -4,6 +4,7 @@ require('fullcalendar-scheduler/dist/scheduler.css');
 
 require('qtip2');
 require('fullcalendar');
+require('fullcalendar/dist/locale/es');
 require('fullcalendar-scheduler');
 
 $(function () {
