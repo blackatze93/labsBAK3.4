@@ -93,5 +93,4 @@ class ProyectoCurricular
     {
         $this->facultad = $facultad;
     }
-
 }

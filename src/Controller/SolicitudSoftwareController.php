@@ -20,7 +20,7 @@ class SolicitudSoftwareController extends BaseAdminController
      */
     protected function preUpdateEntity($entity)
     {
-        if ($entity->getEstado() == 'Aprobada') {
+        if ('Aprobada' == $entity->getEstado()) {
             $entity->setFechaRespuesta(new \DateTime());
             $entity->setUsuarioResponde($this->getUser());
         }

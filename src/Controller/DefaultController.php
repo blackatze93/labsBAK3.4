@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,7 +9,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Range;
-use Symfony\Component\Validator\Constraints\Type;
 
 class DefaultController extends Controller
 {
@@ -58,6 +56,7 @@ class DefaultController extends Controller
         // Si el formulario se ha enviado y es valido comprobamos el usuario
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($pagina);
+
             try {
                 $em->flush();
                 $this->addFlash('success', 'Se actualizó la página de inicio correctamente');
@@ -120,12 +119,12 @@ class DefaultController extends Controller
                 $pazSalvo = 'no';
 
                 // Usamos una variable bandera para saber si el usuario esta en paz y salvo
-                if ($usuario->getEstado() == 'Paz y Salvo') {
+                if ('Paz y Salvo' == $usuario->getEstado()) {
                     $pazSalvo = 'si';
                 }
 
                 // Si la opcion que selecciono fue generar y el usuario esta en paz y salvo procedemos a generarlo
-                if ($form->get('generar')->isClicked() && $pazSalvo == 'si') {
+                if ($form->get('generar')->isClicked() && 'si' == $pazSalvo) {
                     $reporte = new ReporteController();
 
                     return $reporte->crearPazSalvo($usuario, $this->get('t_fox_mpdf_port.pdf'), $this->container->get('assets.packages'));

@@ -61,7 +61,7 @@ class GraficoController extends Controller
                     'Septiembre' => 8,
                     'Octubre' => 9,
                     'Noviembre' => 10,
-                    'Diciembre' => 11
+                    'Diciembre' => 11,
                 ),
                 'constraints' => array(
                     new NotBlank(),
@@ -80,7 +80,7 @@ class GraficoController extends Controller
                     'Septiembre' => 8,
                     'Octubre' => 9,
                     'Noviembre' => 10,
-                    'Diciembre' => 11
+                    'Diciembre' => 11,
                 ),
                 'constraints' => array(
                     new NotBlank(),
@@ -120,7 +120,7 @@ class GraficoController extends Controller
                 $prestamosMes = $em->getRepository('App:PrestamoPracticaLibre')->findPrestamosMes(
                     array(
                         'mes' => $prestamos[$i]['mes'],
-                        'anio' => $anio
+                        'anio' => $anio,
                     ));
 
                 for ($j = 0; $j < count($prestamosMes); ++$j) {

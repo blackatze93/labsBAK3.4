@@ -31,6 +31,7 @@ class SolicitudSoftware
     private $nombre;
 
     // TODO: pendiente, aprobado, rechazado
+
     /**
      * @var string
      *

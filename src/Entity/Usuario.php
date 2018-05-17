@@ -168,7 +168,7 @@ class Usuario implements AdvancedUserInterface
      */
     public function __toString()
     {
-        return $this->nombre . ' ' . $this->apellido;
+        return $this->nombre.' '.$this->apellido;
     }
 
     /**
@@ -514,7 +514,7 @@ class Usuario implements AdvancedUserInterface
      */
     public function getSalt()
     {
-        return ;
+        return;
     }
 
     /**

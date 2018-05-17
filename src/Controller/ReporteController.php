@@ -50,12 +50,12 @@ class ReporteController extends Controller
             $pazSalvo = 'no';
 
             // Usamos una variable bandera para saber si el usuario esta en paz y salvo
-            if ($usuario->getEstado() == 'Paz y Salvo') {
+            if ('Paz y Salvo' == $usuario->getEstado()) {
                 $pazSalvo = 'si';
             }
 
             // Si la opcion que selecciono fue generar y el usuario esta en paz y salvo procedemos a generarlo
-            if ($form->get('generar')->isClicked() && $pazSalvo == 'si') {
+            if ($form->get('generar')->isClicked() && 'si' == $pazSalvo) {
                 return $this->crearPazSalvo($usuario, $this->get('t_fox_mpdf_port.pdf'), $this->get('assets.packages'));
             }
 
