@@ -31,7 +31,7 @@ class CalendarController extends Controller
 
         $events = $this->container->get('event_dispatcher')->dispatch(CalendarEvent::CONFIGURE, new CalendarEvent($startDatetime, $endDatetime, $request))->getEvents();
 
-        $response = new \Symfony\Component\HttpFoundation\Response();
+        $response = new Response();
         $response->headers->set('Content-Type', 'application/json');
 
         $return_events = array();
