@@ -50,7 +50,7 @@ class Dependencia
 
     public function __toString()
     {
-        return $this->nombre . ' - ' . $this->facultad;
+        return $this->nombre.' - '.$this->facultad;
     }
 
     /**

@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use App\Event\CalendarEvent;
 
 class CalendarController extends Controller
@@ -16,6 +15,7 @@ class CalendarController extends Controller
      * Dispatch a CalendarEvent and return a JSON Response of any events returned.
      *
      * @param Request $request
+     *
      * @return Response
      *
      * @Route("/fc-load-events/", name="fullcalendar_eventos", options={"expose"=true})
@@ -36,7 +36,7 @@ class CalendarController extends Controller
 
         $return_events = array();
 
-        foreach($events as $event) {
+        foreach ($events as $event) {
             $return_events[] = $event->toArray();
         }
 

@@ -24,6 +24,7 @@ class SolicitudSala
     private $id;
 
     // TODO: pendiente, aprobado, rechazado
+
     /**
      * @var string
      *

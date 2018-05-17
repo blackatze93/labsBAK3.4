@@ -58,11 +58,11 @@ class UsuarioType extends AbstractType
         ;
 
         // Dependiendo del tipo de form si es nuevo usuario o modificcacion se agrega el boton
-        if ($options['accion'] === 'registro') {
+        if ('registro' === $options['accion']) {
             $builder
                 ->add('crear', SubmitType::class)
             ;
-        } elseif ($options['accion'] === 'modificar_perfil') {
+        } elseif ('modificar_perfil' === $options['accion']) {
             $builder
                 ->add('guardar', SubmitType::class)
             ;

@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Doctrine\ORM\EntityRepository;;
+use Doctrine\ORM\EntityRepository;
 
 class SolicitudSalaController extends BaseAdminController
 {
@@ -23,7 +23,7 @@ class SolicitudSalaController extends BaseAdminController
      */
     protected function preUpdateEntity($entity)
     {
-        if ($entity->getEstado() == 'Aprobada') {
+        if ('Aprobada' == $entity->getEstado()) {
             $entity->setFechaRespuesta(new \DateTime());
             $entity->setUsuarioResponde($this->getUser());
         }

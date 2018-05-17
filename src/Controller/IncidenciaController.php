@@ -26,7 +26,7 @@ class IncidenciaController extends BaseAdminController
     {
         $usuario = $this->getUser();
 
-        if ($entity->getEstado() == 'Atendida') {
+        if ('Atendida' == $entity->getEstado()) {
             $entity->setUsuarioAtiende($usuario);
             $entity->setFechaAtencion(new \DateTime());
         }

@@ -14,7 +14,9 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 class CalendarEventListener
 {
     private $entityManager;
+
     private $router;
+
     private $authorizationChecker;
 
     /**

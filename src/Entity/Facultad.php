@@ -91,5 +91,4 @@ class Facultad
     {
         return $this->proyectosCurriculares;
     }
-
 }

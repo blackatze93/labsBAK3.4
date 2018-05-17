@@ -8,27 +8,27 @@ namespace App\Entity;
 class EventEntity
 {
     /**
-     * @var mixed Unique identifier of this event (optional).
+     * @var mixed unique identifier of this event (optional)
      */
     protected $id;
 
     /**
-     * @var string Title/label of the calendar event.
+     * @var string title/label of the calendar event
      */
     protected $title;
 
     /**
-     * @var string URL Relative to current path.
+     * @var string URL Relative to current path
      */
     protected $url;
 
     /**
-     * @var string HTML color code for the bg color of the event label.
+     * @var string HTML color code for the bg color of the event label
      */
     protected $bgColor;
 
     /**
-     * @var string HTML color code for the foregorund color of the event label.
+     * @var string HTML color code for the foregorund color of the event label
      */
     protected $fgColor;
 
@@ -38,19 +38,20 @@ class EventEntity
     protected $cssClass;
 
     /**
-     * @var \DateTime DateTime object of the event start date/time.
+     * @var \DateTime dateTime object of the event start date/time
      */
     protected $startDatetime;
 
     /**
-     * @var \DateTime DateTime object of the event end date/time.
+     * @var \DateTime dateTime object of the event end date/time
      */
     protected $endDatetime;
 
     /**
-     * @var boolean Is this an all day event?
+     * @var bool Is this an all day event?
      */
     protected $allDay = false;
+
     /**
      * @var array Non-standard fields
      */
@@ -62,14 +63,15 @@ class EventEntity
         $this->startDatetime = $startDatetime;
         $this->setAllDay($allDay);
 
-        if ($endDatetime === null && $this->allDay === false) {
-            throw new \InvalidArgumentException("Must specify an event End DateTime if not an all day event.");
+        if (null === $endDatetime && false === $this->allDay) {
+            throw new \InvalidArgumentException('Must specify an event End DateTime if not an all day event.');
         }
 
         $this->endDatetime = $endDatetime;
     }
+
     /**
-     * Convert calendar event details to an array
+     * Convert calendar event details to an array.
      *
      * @return array $event
      */
@@ -77,30 +79,30 @@ class EventEntity
     {
         $event = array();
 
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             $event['id'] = $this->id;
         }
 
         $event['title'] = $this->title;
         $event['start'] = $this->startDatetime->format("Y-m-d\TH:i:sP");
 
-        if ($this->url !== null) {
+        if (null !== $this->url) {
             $event['url'] = $this->url;
         }
 
-        if ($this->bgColor !== null) {
+        if (null !== $this->bgColor) {
             $event['backgroundColor'] = $this->bgColor;
             $event['borderColor'] = $this->bgColor;
         }
 
-        if ($this->fgColor !== null) {
+        if (null !== $this->fgColor) {
             $event['textColor'] = $this->fgColor;
         }
 
-        if ($this->cssClass !== null) {
+        if (null !== $this->cssClass) {
             $event['className'] = $this->cssClass;
         }
-        if ($this->endDatetime !== null) {
+        if (null !== $this->endDatetime) {
             $event['end'] = $this->endDatetime->format("Y-m-d\TH:i:sP");
         }
 
@@ -111,6 +113,7 @@ class EventEntity
 
         return $event;
     }
+
     public function setId($id)
     {
         $this->id = $id;
@@ -130,6 +133,7 @@ class EventEntity
     {
         return $this->title;
     }
+
     public function setUrl($url)
     {
         $this->url = $url;
@@ -192,13 +196,14 @@ class EventEntity
 
     public function setAllDay($allDay = false)
     {
-        $this->allDay = (boolean) $allDay;
+        $this->allDay = (bool) $allDay;
     }
 
     public function getAllDay()
     {
         return $this->allDay;
     }
+
     /**
      * @param string $name
      * @param string $value
@@ -207,6 +212,7 @@ class EventEntity
     {
         $this->otherFields[$name] = $value;
     }
+
     /**
      * @param string $name
      */
