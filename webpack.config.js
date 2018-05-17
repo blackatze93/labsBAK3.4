@@ -12,6 +12,7 @@ Encore
     .addEntry('datetimepicker', './assets/js/datetimepicker.js')
     .addEntry('highcharts', './assets/js/highcharts.js')
     .addEntry('noty', './assets/js/noty.js')
+    .addEntry('fullcalendar', './assets/js/fullcalendar.js')
     .addEntry('app', './assets/js/app.js')
 
     // allow sass/scss files to be processed
@@ -27,12 +28,6 @@ Encore
 
     // uncomment to create hashed filenames (e.g. app.abc123.css)
     // .enableVersioning(Encore.isProduction())
-
-    // uncomment if you use Sass/SCSS files
-    // .enableSassLoader()
-
-    // uncomment for legacy applications that require $/jQuery as a global variable
-    // .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();
