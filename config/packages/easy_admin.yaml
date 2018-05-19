@@ -433,7 +433,7 @@ easy_admin:
                     - { property: 'equipo' }
                     - { property: 'usuarioSolicita', type: 'easyadmin_autocomplete', label: 'Usuario que solicita', type_options: { class: 'App\Entity\Usuario', disabled: true } }
                     - { property: 'horaSalida', type: 'time', label: 'Hora de salida', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'timepicker' } } }
-                    - { property: 'observaciones' }
+                    - { property: 'observaciones', type: 'ckeditor' }
 
         PrestamoElemento:
             class: App\Entity\PrestamoElemento
