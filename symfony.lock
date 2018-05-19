@@ -122,6 +122,9 @@
     "mpdf/mpdf": {
         "version": "v7.0.3"
     },
+    "myclabs/deep-copy": {
+        "version": "1.7.0"
+    },
     "nikic/php-parser": {
         "version": "v4.0.0"
     },

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Evento;
+use Doctrine\ORM\EntityRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class EventoController extends BaseAdminController
 {
@@ -92,4 +94,31 @@ class EventoController extends BaseAdminController
             'entity' => $entity,
         ));
     }
+
+    /**
+     * @param object $entity
+     * @param string $view
+     *
+     * @return \Symfony\Component\Form\FormBuilder
+     */
+    protected function createEntityFormBuilder($entity, $view)
+    {
+        $builder = parent::createEntityFormBuilder($entity, $view);
+
+        $builder->add('lugar', EntityType::class, array(
+            'class' => 'App\Entity\Lugar',
+            'placeholder' => 'Ninguno',
+            'attr' => array(
+                'data-widget' => 'select2',
+            ),
+            'query_builder' => function (EntityRepository $er) {
+                return $er->createQueryBuilder('lugar')
+                    ->where('lugar.visible = true');
+            },
+        ));
+
+        return $builder;
+    }
+
+
 }
