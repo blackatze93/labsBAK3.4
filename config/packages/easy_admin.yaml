@@ -442,6 +442,7 @@ easy_admin:
             list:
                 title: 'Préstamo Elemento'
                 actions:
+                    - { name: 'salir', icon: 'sign-out' }
                     - { name: 'show', icon: 'eye' }
                     - { name: 'new', label: 'Crear Préstamo Elemento' }
                 fields:
@@ -451,7 +452,7 @@ easy_admin:
                     - { property: 'fechaDevolucion', type: 'datetime', label: 'Fecha de devolución' }
                     - { property: 'observaciones', type: 'raw' }
                     - { property: 'usuarioRealiza', label: 'Usuario que realiza' }
-                sort: 'fechaPrestamo'
+                sort: [ 'fechaDevolucion', 'ASC' ]
 
             show:
                 title: 'Préstamo Elemento (#%%entity_id%%)'

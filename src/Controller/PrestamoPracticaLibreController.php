@@ -57,7 +57,9 @@ class PrestamoPracticaLibreController extends BaseAdminController
         // change the properties of the given entity and save the changes
         $id = $this->request->query->get('id');
         $entity = $this->em->getRepository('App:PrestamoPracticaLibre')->find($id);
-        $entity->setHoraSalida(new \DateTime());
+        if (is_null($entity->getHoraSalida())){
+            $entity->setHoraSalida(new \DateTime());
+        }
         $entity->getEquipo()->setPrestado(false);
         $this->em->flush();
 
