@@ -3,7 +3,7 @@ vich_uploader:
     mappings:
         documentos:
             uri_prefix: '%app.path.documentos%'
-            upload_destination: '%kernel.root_dir%/../web/%app.path.documentos%'
+            upload_destination: '%kernel.root_dir%/../public/%app.path.documentos%'
 
     #mappings:
     #    products:
