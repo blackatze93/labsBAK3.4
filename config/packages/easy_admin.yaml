@@ -384,7 +384,7 @@ easy_admin:
             controller: App\Controller\PrestamoPracticaLibreController
 
             search:
-                fields: ['equipo']
+                fields: ['equipo.nombre']
                 sort: [ 'horaSalida', 'ASC' ]
 
             list:
