@@ -262,24 +262,28 @@ easy_admin:
             class: App\Entity\Elemento
             controller: App\Controller\ElementoController
 
+            search:
+                fields: ['placa', 'serial', 'nombre', 'lugar.nombre']
+                sort: 'lugar'
+
             list:
                 title: 'Elementos'
                 fields:
                     - 'placa'
                     - 'serial'
+                    - 'nombre'
                     - 'estado'
                     - 'tipo'
                     - 'tipoPrestamo'
                     - 'lugar'
-                    - 'equipo'
                 sort: 'lugar'
 
             show:
                 fields:
                     - 'placa'
-                    - 'modelo'
-                    - 'marca'
                     - 'nombre'
+                    - 'marca'
+                    - 'modelo'
                     - 'serial'
                     - 'tipo'
                     - 'lugar'
@@ -294,9 +298,9 @@ easy_admin:
             form:
                 fields:
                     - 'placa'
-                    - 'modelo'
-                    - 'marca'
                     - 'nombre'
+                    - 'marca'
+                    - 'modelo'
                     - 'serial'
                     - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
                     - { property: 'equipo', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Equipo' } }
@@ -384,7 +388,7 @@ easy_admin:
             controller: App\Controller\PrestamoPracticaLibreController
 
             search:
-                fields: ['equipo.nombre']
+                fields: ['equipo.nombre', 'usuarioSolicita.codigo']
                 sort: [ 'horaSalida', 'ASC' ]
 
             list:
