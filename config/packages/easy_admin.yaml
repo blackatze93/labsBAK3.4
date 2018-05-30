@@ -279,7 +279,7 @@ easy_admin:
                     - 'placa'
                     - 'modelo'
                     - 'marca'
-                    - 'descripcion'
+                    - 'nombre'
                     - 'serial'
                     - 'tipo'
                     - 'lugar'
@@ -296,7 +296,7 @@ easy_admin:
                     - 'placa'
                     - 'modelo'
                     - 'marca'
-                    - 'descripcion'
+                    - 'nombre'
                     - 'serial'
                     - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
                     - { property: 'equipo', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Equipo' } }

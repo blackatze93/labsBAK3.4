@@ -52,7 +52,7 @@ class Elemento
      * @ORM\Column(type="string", length=1000, nullable=true)
      * @Assert\Length(max="1000")
      */
-    private $descripcion;
+    private $nombre;
 
     /**
      * @var string
@@ -228,17 +228,17 @@ class Elemento
     /**
      * @return string
      */
-    public function getDescripcion()
+    public function getNombre()
     {
-        return $this->descripcion;
+        return $this->nombre;
     }
 
     /**
-     * @param string $descripcion
+     * @param string $nombre
      */
-    public function setDescripcion($descripcion)
+    public function setNombre($nombre)
     {
-        $this->descripcion = $descripcion;
+        $this->nombre = $nombre;
     }
 
     /**
