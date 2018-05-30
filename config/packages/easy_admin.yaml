@@ -272,6 +272,7 @@ easy_admin:
                     - 'placa'
                     - 'serial'
                     - 'nombre'
+                    - { property: 'imagen', type: 'image', base_path: '%app.path.imagenes_elementos%' }
                     - 'estado'
                     - 'tipo'
                     - 'tipoPrestamo'
@@ -285,6 +286,7 @@ easy_admin:
                     - 'marca'
                     - 'modelo'
                     - 'serial'
+                    - { property: 'imagen', type: 'image', base_path: '%app.path.imagenes_elementos%' }
                     - 'tipo'
                     - 'lugar'
                     - 'equipo'
@@ -302,6 +304,7 @@ easy_admin:
                     - 'marca'
                     - 'modelo'
                     - 'serial'
+                    - { property: 'imagenFile', label: 'Imagen', type: 'vich_image' }
                     - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
                     - { property: 'equipo', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Equipo' } }
                     - { property: 'fechaIngreso', type: 'date', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datepicker' } } }

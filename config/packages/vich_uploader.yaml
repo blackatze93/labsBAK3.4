@@ -5,6 +5,10 @@ vich_uploader:
             uri_prefix: '%app.path.documentos%'
             upload_destination: '%kernel.root_dir%/../public/%app.path.documentos%'
 
+        imagenes_elementos:
+            uri_prefix: '%app.path.imagenes_elementos%'
+            upload_destination: '%kernel.root_dir%/../public/%app.path.imagenes_elementos%'
+
     #mappings:
     #    products:
     #        uri_prefix: /images/products

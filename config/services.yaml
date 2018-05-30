@@ -3,6 +3,7 @@
 parameters:
     locale: 'es'
     app.path.documentos: uploads/documentos/
+    app.path.imagenes_elementos: uploads/imagenes/elementos
 
 services:
     # default configuration for services in *this* file

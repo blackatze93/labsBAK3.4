@@ -5,11 +5,14 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ElementoRepository")
  * @DoctrineAssert\UniqueEntity("placa")
  * @DoctrineAssert\UniqueEntity("serial")
+ * @Vich\Uploadable
  */
 class Elemento
 {
@@ -135,6 +138,29 @@ class Elemento
     private $equipo;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imagen;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="imagenes_elementos", fileNameProperty="imagen")
+     */
+    private $imagenFile;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_actualizacion", type="datetime")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
+     */
+    private $fechaActualizacion;
+
+    /**
      * Elemento constructor.
      */
     public function __construct()
@@ -143,6 +169,7 @@ class Elemento
         $this->setPrestado(false);
         $this->setTipoPrestamo('Nadie');
         $this->setEstado('Bueno');
+        $this->setFechaActualizacion(new \DateTime());
     }
 
     /**
@@ -150,7 +177,7 @@ class Elemento
      */
     public function __toString()
     {
-        return 'Tipo: '.$this->getTipo().', Placa: '.$this->getPlaca();
+        return 'Nombre: '.$this->getNombre().', Placa: '.$this->getPlaca();
     }
 
     /**
@@ -384,4 +411,60 @@ class Elemento
     {
         $this->equipo = $equipo;
     }
+
+    /**
+     * @return File
+     */
+    public function getImagenFile()
+    {
+        return $this->imagenFile;
+    }
+
+    /**
+     * @param File $imagenFile
+     */
+    public function setImagenFile(File $imagen = null)
+    {
+        $this->imagenFile = $imagen;
+
+        if ($imagen) {
+            $this->setFechaActualizacion(new \DateTime());
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    /**
+     * @param string $imagen
+     */
+    public function setImagen($imagen)
+    {
+        $this->imagen = $imagen;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFechaActualizacion()
+    {
+        return $this->fechaActualizacion;
+    }
+
+    /**
+     * @param \DateTime $fechaActualizacion
+     */
+    public function setFechaActualizacion($fechaActualizacion)
+    {
+        $this->fechaActualizacion = $fechaActualizacion;
+    }
+
+
+
+
 }
