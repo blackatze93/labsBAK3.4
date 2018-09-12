@@ -10,6 +10,7 @@
         "friendsofsymfony/jsrouting-bundle": "^2.2",
         "helios-ag/fm-elfinder-bundle": "^8.0",
         "ob/highcharts-bundle": "^1.6",
+        "sensio/framework-extra-bundle": "^5.2",
         "symfony/console": "^3.4",
         "symfony/expression-language": "^3.4",
         "symfony/flex": "^1.0",
