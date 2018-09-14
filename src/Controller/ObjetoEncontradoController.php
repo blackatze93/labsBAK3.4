@@ -3,8 +3,7 @@
 namespace App\Controller;
 
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -57,8 +56,7 @@ class ObjetoEncontradoController extends BaseAdminController
     }
 
     /**
-     * @Route("/encontrados_bulk_delete/", name="encontrados_bulk_delete")
-     * @Method({"POST"})
+     * @Route("/encontrados_bulk_delete/", name="encontrados_bulk_delete", methods={"POST"})
      *
      * @param Request $request
      *

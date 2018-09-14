@@ -9,6 +9,9 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use App\Entity\Lugar;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class PrestamoPracticaLibreController extends BaseAdminController
 {
@@ -70,6 +73,42 @@ class PrestamoPracticaLibreController extends BaseAdminController
             'sortField' => 'horaSalida',
             'sortDirection' => 'ASC',
         ));
+    }
+
+    /**
+     * @Route("/prestamos_bulk_exit/", name="prestamos_bulk_exit", methods={"POST"})
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function bulkExitAction(Request $request)
+    {
+        $response = new JsonResponse('', 400);
+
+        if (!$request->isXmlHttpRequest()) {
+            return $response;
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $prestamos = $em->getRepository('App:PrestamoPracticaLibre')->findBy(
+            ['horaSalida' => null]
+        );
+
+        // Recorre el array de prestamos para salir cada objeto
+        foreach ($prestamos as $prestamo) {
+            $prestamo->setHoraSalida(new \DateTime());
+            $prestamo->getEquipo()->setPrestado(false);
+        }
+
+        try {
+            $em->flush();
+            $response->setStatusCode(200);
+            $this->addFlash('success', 'Salieron todos los prestamos con exito.');
+        } catch (\Exception $e) {
+        }
+
+        return $response;
     }
 
     /**
