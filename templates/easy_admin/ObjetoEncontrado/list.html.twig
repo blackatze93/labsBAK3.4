@@ -13,19 +13,26 @@
 
     <script type="text/javascript">
         $(function(){
+            var already_clicked = false;
+
             $('.bulk-delete').on('click', function(e) {
                 e.preventDefault();
 
-                $.ajax({
-                    'url': '{{ path('encontrados_bulk_delete') }}',
-                    'type': 'POST',
-                    'success': function(data, textStatus, jqXHR) {
-                        location.reload();
-                    },
-                    'error': function(jqXHR, textStatus, errorThrown) {
-                        notificacion('No se pudieron borrar los objetos encontrados.', 'error');
-                    }
-                });
+                if (!already_clicked) {
+                    already_clicked = true;
+                    $.ajax({
+                        'url': '{{ path('encontrados_bulk_delete') }}',
+                        'type': 'POST',
+                        'success': function(data, textStatus, jqXHR) {
+                            location.reload();
+                        },
+                        'error': function(jqXHR, textStatus, errorThrown) {
+                            notificacion('No se pudieron borrar los objetos encontrados.', 'error');
+                        }
+                    });
+                } else {
+                    notificacion('Por favor espere.', 'warning');
+                }
             });
         });
     </script>

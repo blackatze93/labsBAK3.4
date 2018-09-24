@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Usuario;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
@@ -113,8 +113,7 @@ class UsuarioController extends BaseAdminController
     /**
      * Metodo que permite ver el perfil de un usuario y modificarlo.
      *
-     * @Route("/perfil/", name="usuario_perfil")
-     * @Method({"GET", "POST"})
+     * @Route("/perfil/", name="usuario_perfil", methods={"GET", "POST"})
      *
      * @param Request $request
      *
@@ -158,8 +157,7 @@ class UsuarioController extends BaseAdminController
     /**
      * Metodo que genera la pagina de nuevo usuario y procesa los datos.
      *
-     * @Route("/registro/", name="usuario_registro")
-     * @Method({"GET", "POST"})
+     * @Route("/registro/", name="usuario_registro", methods={"GET", "POST"})
      *
      * @param Request $request
      *
@@ -322,5 +320,40 @@ class UsuarioController extends BaseAdminController
         return $this->render('index.html.twig', array(
             'pagina' => $pagina,
         ));
+    }
+
+    /**
+     * @Route("/usuarios_bulk_reset/", name="usuarios_bulk_reset", methods={"POST"})
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function bulkExitAction(Request $request)
+    {
+        $response = new JsonResponse('', 400);
+
+        if (!$request->isXmlHttpRequest()) {
+            return $response;
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $estudiantes = $em->getRepository('App:Usuario')->findBy(
+            ['rol' => 'ROLE_ESTUDIANTE']
+        );
+
+        // Recorre el array de estudiantes para desactivarlos
+        foreach ($estudiantes as $estudiante) {
+            $estudiante->setActivo(false);
+        }
+
+        try {
+            $em->flush();
+            $response->setStatusCode(200);
+            $this->addFlash('success', 'Se reiniciaron los permisos de los estudiantes con exito.');
+        } catch (\Exception $e) {
+        }
+
+        return $response;
     }
 }

@@ -1,9 +1,9 @@
 {% extends 'easy_admin/list.html.twig' %}
 
-{% block bulk_exit %}
+{% block bulk_reset %}
     <div class="button-action">
-        <a class="btn btn-warning bulk-exit" href="#" target="_self">
-            Salir a todos
+        <a class="btn btn-warning bulk-reset" href="#" target="_self">
+            Reiniciar permisos estudiantes
         </a>
     </div>
 {% endblock %}
@@ -15,19 +15,19 @@
         $(function(){
             var already_clicked = false;
 
-            $('.bulk-exit').on('click', function(e) {
+            $('.bulk-reset').on('click', function(e) {
                 e.preventDefault();
 
                 if (!already_clicked) {
                     already_clicked = true;
                     $.ajax({
-                        'url': '{{ path('prestamos_bulk_exit') }}',
+                        'url': '{{ path('usuarios_bulk_reset') }}',
                         'type': 'POST',
                         'success': function (data, textStatus, jqXHR) {
                             location.reload();
                         },
                         'error': function (jqXHR, textStatus, errorThrown) {
-                            notificacion('No pudieron salir todos los prestamos.', 'error');
+                            notificacion('No se pudieron reiniciar los permisos.', 'error');
                         }
                     });
                 } else {

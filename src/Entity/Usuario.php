@@ -168,7 +168,7 @@ class Usuario implements AdvancedUserInterface
      */
     public function __toString()
     {
-        return $this->nombre.' '.$this->apellido;
+        return $this->nombre.' '.$this->apellido.' - Activo: '.($this->activo ? 'Si' : 'No');
     }
 
     /**
