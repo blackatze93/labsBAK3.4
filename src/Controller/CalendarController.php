@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,8 +17,7 @@ class CalendarController extends Controller
      *
      * @return Response
      *
-     * @Route("/fc-load-events/", name="fullcalendar_eventos", options={"expose"=true})
-     * @Method("POST")
+     * @Route("/fc-load-events/", name="fullcalendar_eventos", options={"expose"=true}, methods={"POST"})
      */
     public function loadCalendarAction(Request $request)
     {

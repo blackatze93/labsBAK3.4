@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Equipo;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
@@ -27,8 +26,10 @@ class LugarController extends BaseAdminController
                 $equipo->setNombre('FT'.$idSala.'_'.($i + 2));
             }
             $equipo->setLugar($entity);
-
-            $this->em->persist($equipo);
+            try {
+                $this->em->persist($equipo);
+            } catch (\Exception $e) {
+            }
         }
     }
 
@@ -39,8 +40,7 @@ class LugarController extends BaseAdminController
      *
      * @internal param Request $request
      *
-     * @Route("/fc-load-lugares/", name="fullcalendar_lugares", options={"expose"=true})
-     * @Method("POST")
+     * @Route("/fc-load-lugares/", name="fullcalendar_lugares", options={"expose"=true}, methods={"POST"})
      */
     public function cargarLugaresAction()
     {

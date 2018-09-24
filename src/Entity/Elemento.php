@@ -421,7 +421,7 @@ class Elemento
     }
 
     /**
-     * @param File $imagenFile
+     * @param File|null $imagen
      */
     public function setImagenFile(File $imagen = null)
     {

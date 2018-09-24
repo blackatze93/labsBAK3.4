@@ -55,7 +55,10 @@ class PrestamoElementoController extends BaseAdminController
             $entity->setFechaDevolucion(new \DateTime());
         }
         $entity->getElemento()->setPrestado(false);
-        $this->em->flush();
+        try {
+            $this->em->flush();
+        } catch (\Exception $e) {
+        }
 
         // redirect to the 'list' view of the given entity
         return $this->redirectToRoute('easyadmin', array(

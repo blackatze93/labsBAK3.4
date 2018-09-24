@@ -25,7 +25,8 @@ class CalendarEvent extends Event
      * Constructor method requires a start and end time for event listeners to use.
      *
      * @param \DateTime $start Begin datetime to use
-     * @param \DateTime $end   End datetime to use
+     * @param \DateTime $end End datetime to use
+     * @param Request|null $request
      */
     public function __construct(\DateTime $start, \DateTime $end, Request $request = null)
     {

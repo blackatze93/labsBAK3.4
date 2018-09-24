@@ -64,7 +64,10 @@ class PrestamoPracticaLibreController extends BaseAdminController
             $entity->setHoraSalida(new \DateTime());
         }
         $entity->getEquipo()->setPrestado(false);
-        $this->em->flush();
+        try {
+            $this->em->flush();
+        } catch (\Exception $e) {
+        }
 
         // redirect to the 'list' view of the given entity
         return $this->redirectToRoute('easyadmin', array(
