@@ -17,7 +17,7 @@ easy_admin:
         assets:
             favicon: 'favicon.ico'
 
-        color_scheme: 'light'
+        brand_color: '#88021D'
 
         form_theme: ['horizontal', 'form/fields.html.twig']
 
@@ -405,6 +405,7 @@ easy_admin:
                     - { property: 'horaEntrada', type: 'time', label: 'Hora de entrada' }
                     - { property: 'equipo' }
                     - { property: 'usuarioSolicita', label: 'Usuario que solicita' }
+                    - { property: 'usuarioSolicita.activo', type: 'toggle', label: 'Usuario activo' }
                     - { property: 'horaSalida', type: 'time', label: 'Hora de salida' }
                     - { property: 'observaciones', type: 'raw' }
                     - { property: 'usuarioRealiza', label: 'Usuario que realiza' }
