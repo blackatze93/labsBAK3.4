@@ -15,7 +15,6 @@
         "symfony/expression-language": "^3.4",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^3.4",
-        "symfony/lts": "^3",
         "symfony/maker-bundle": "^1.0",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "^3.4",
@@ -69,7 +68,8 @@
     "extra": {
         "symfony": {
             "id": "01C5PDE4K6W22G6XABJRQZ802B",
-            "allow-contrib": false
+            "allow-contrib": false,
+            "require": "^3.4"
         }
     }
 }
