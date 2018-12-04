@@ -311,7 +311,7 @@ easy_admin:
                     - { property: 'estado', type: 'choice', type_options: { choices:  { 'Bueno': 'Bueno', 'Mantenimiento': 'Mantenimiento', Dañado': 'Dañado', 'Malo': 'Malo', 'Otro': 'Otro' }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'tipo', type_options: { attr: { placeholder: 'CPU, Teclado, Monitor' } } }
                     - { property: 'tipoPrestamo', type: 'choice', type_options: { choices:  {  'Nadie': 'Nadie', 'Funcionarios': 'Funcionarios', 'Todos': 'Todos' }, attr: { 'data-widget': 'select2' } } }
-                    - { property: 'observaciones', type: 'ckeditor' }
+                    - { property: 'observaciones', type: 'fos_ckeditor' }
                     - { property: 'activo', type: 'checkbox' }
 
         Asignatura:
@@ -430,7 +430,7 @@ easy_admin:
                     - { property: 'lugar' }
                     - { property: 'equipo' }
                     - { property: 'usuarioSolicita', type: 'easyadmin_autocomplete', label: 'Usuario que solicita', type_options: { class: 'App\Entity\Usuario' } }
-                    - { property: 'observaciones', type: 'ckeditor' }
+                    - { property: 'observaciones', type: 'fos_ckeditor' }
 
             edit:
                 title: 'Modificar Préstamo Práctica Libre'
@@ -441,7 +441,7 @@ easy_admin:
                     - { property: 'equipo' }
                     - { property: 'usuarioSolicita', type: 'easyadmin_autocomplete', label: 'Usuario que solicita', type_options: { class: 'App\Entity\Usuario', disabled: true } }
                     - { property: 'horaSalida', type: 'time', label: 'Hora de salida', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'timepicker' } } }
-                    - { property: 'observaciones', type: 'ckeditor' }
+                    - { property: 'observaciones', type: 'fos_ckeditor' }
 
         PrestamoElemento:
             class: App\Entity\PrestamoElemento
@@ -478,7 +478,7 @@ easy_admin:
                     - { property: 'elemento', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Elemento' } }
                     - { property: 'usuarioSolicita', type: 'easyadmin_autocomplete', label: 'Usuario que solicita', type_options: { class: 'App\Entity\Usuario' } }
                     - { property: 'fechaDevolucion', type: 'datetime', label: 'Fecha de devolución', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datetimepicker' } } }
-                    - { property: 'observaciones', type: 'ckeditor' }
+                    - { property: 'observaciones', type: 'fos_ckeditor' }
 
             new:
                 title: 'Crear Préstamo Elemento'
@@ -515,7 +515,7 @@ easy_admin:
 
             new:
                 fields:
-                    - { property: 'descripcionProblema', type: 'ckeditor' }
+                    - { property: 'descripcionProblema', type: 'fos_ckeditor' }
                     - { property: 'elemento', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Elemento' } }
                     - { property: 'equipo', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Equipo' } }
 
@@ -523,12 +523,12 @@ easy_admin:
                 fields:
                     - { type: 'group', collapsible: true, expanded: false, label: 'Problema' }
                     - { property: 'fechaRegistro', type: 'datetime', type_options: { widget: single_text, html5: false, disabled: true, attr: { data-widget: 'datetimepicker' } } }
-                    - { property: 'descripcionProblema', type: 'ckeditor', type_options: { disabled: true } }
+                    - { property: 'descripcionProblema', type: 'fos_ckeditor', type_options: { disabled: true } }
                     - { property: 'elemento', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Elemento' } }
                     - { property: 'equipo', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Equipo' } }
                     - { type: 'group', collapsible: true, expanded: true, label: 'Solución' }
                     - { property: 'estado', type: 'choice', type_options: { choices:  { 'Pendiente': 'Pendiente', 'Atendida': 'Atendida' }, attr: { 'data-widget': 'select2' } } }
-                    - { property: 'descripcionSolucion', type: 'ckeditor' }
+                    - { property: 'descripcionSolucion', type: 'fos_ckeditor' }
 
         SoporteFacultad:
             class: App\Entity\SoporteFacultad
@@ -559,7 +559,7 @@ easy_admin:
                 fields:
                     - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de Registro', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datetimepicker' } } }
                     - { property: 'dependencia' }
-                    - { property: 'descripcionProblema', type: 'ckeditor' }
+                    - { property: 'descripcionProblema', type: 'fos_ckeditor' }
 
             new:
                 title: 'Nuevo Soporte Facultad'
@@ -600,7 +600,7 @@ easy_admin:
                     - { property: 'nombreEmpresa', label: 'Nombre de la empresa' }
                     - { property: 'cedulaTecnico', label: 'Cédula del técnico' }
                     - { property: 'nombreTecnico', label: 'Nombre del técnico' }
-                    - { property: 'descripcion', type: 'ckeditor' }
+                    - { property: 'descripcion', type: 'fos_ckeditor' }
                     - { property: 'usuarioAtiende', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Usuario' } }
 
             new:
@@ -651,7 +651,7 @@ easy_admin:
                     - { property: 'estado', type: 'choice', type_options: { choices:  { 'Pendiente': 'Pendiente', 'Aprobada': 'Aprobada' }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'usuarioRealiza', label: 'Usuario que realiza', type_options: { disabled: true } }
                     - { property: 'lugar',  type_options: { disabled: true } }
-                    - { property: 'observaciones', type: 'ckeditor', type_options: { disabled: true } }
+                    - { property: 'observaciones', type: 'fos_ckeditor', type_options: { disabled: true } }
 
         SolicitudSoftware:
             class: App\Entity\SolicitudSoftware
@@ -688,7 +688,7 @@ easy_admin:
                     - { property: 'estado', type: 'choice', type_options: { choices:  { 'Pendiente': 'Pendiente', 'Aprobada': 'Aprobada' }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'lugar',  type_options: { disabled: true } }
                     - { property: 'usuarioRealiza', label: 'Usuario que realiza', type_options: { disabled: true } }
-                    - { property: 'observaciones', type: 'ckeditor', type_options: { disabled: true } }
+                    - { property: 'observaciones', type: 'fos_ckeditor', type_options: { disabled: true } }
 
         Evento:
             class: App\Entity\Evento
@@ -729,7 +729,7 @@ easy_admin:
                     - { property: 'tipo', type: 'choice', type_options: { choices:  { 'Clase': 'Clase', 'Practica Libre': 'Practica Libre','Mantenimiento': 'Mantenimiento', 'Reserva': 'Reserva', 'Otro': 'Otro', }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'asignatura', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Asignatura' } }
                     - { property: 'grupo', type: 'text' }
-                    - { property: 'observaciones', type: 'ckeditor' }
+                    - { property: 'observaciones', type: 'fos_ckeditor' }
 
             edit:
                 form_options: { validation_groups: ['Default'] }
@@ -741,7 +741,7 @@ easy_admin:
                     - { property: 'tipo', type: 'choice', type_options: { choices:  { 'Clase': 'Clase', 'Practica Libre': 'Practica Libre','Mantenimiento': 'Mantenimiento', 'Reserva': 'Reserva', 'Otro': 'Otro', }, attr: { 'data-widget': 'select2' } } }
                     - { property: 'asignatura', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Asignatura', required: false } }
                     - { property: 'grupo', type: 'text', type_options: { required: false } }
-                    - { property: 'observaciones', type: 'ckeditor' }
+                    - { property: 'observaciones', type: 'fos_ckeditor' }
 
         Baja:
             class: App\Entity\Baja
@@ -863,7 +863,7 @@ easy_admin:
 
             form:
                fields:
-                    - { property: 'descripcion', type: 'ckeditor' }
+                    - { property: 'descripcion', type: 'fos_ckeditor' }
                     - { property: 'fechaRegistro', type: 'datetime', label: 'Fecha de registro', type_options: { widget: 'single_text', html5: false, attr: { 'data-widget': 'datetimepicker' } } }
                     - { property: 'lugar', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } } }
                     - 'entregado'

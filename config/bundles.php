@@ -12,10 +12,10 @@ return [
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
-    Ivory\CKEditorBundle\IvoryCKEditorBundle::class => ['all' => true],
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     FM\ElfinderBundle\FMElfinderBundle::class => ['all' => true],
     TFox\MpdfPortBundle\TFoxMpdfPortBundle::class => ['all' => true],
     Ob\HighchartsBundle\ObHighchartsBundle::class => ['all' => true],
     FOS\JsRoutingBundle\FOSJsRoutingBundle::class => ['all' => true],
+    FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
 ];

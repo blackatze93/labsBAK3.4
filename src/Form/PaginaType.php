@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Pagina;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

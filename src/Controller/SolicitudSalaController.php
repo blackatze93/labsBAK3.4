@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Evento;
 use App\Entity\SolicitudSala;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
