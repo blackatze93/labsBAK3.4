@@ -9,6 +9,7 @@ security:
                 login_path:  usuario_login
                 check_path:  usuario_login_check
                 use_referer: true
+                csrf_token_generator: security.csrf.token_manager
             logout:
                 path:        usuario_logout
             remember_me:

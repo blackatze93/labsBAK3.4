@@ -20,9 +20,9 @@ class UsuarioType extends AbstractType
         $builder
             ->add('tipoDocumento', ChoiceType::class, array(
                 'choices' => array(
-                    'C.C.' => 'Cédula de Ciudadanía',
-                    'T.I.' => 'Tarjeta de Identidad',
-                    'C.E.' => 'Cédula de Extranjería',
+                    'Cédula de Ciudadanía' => 'C.C.',
+                    'Tarjeta de Identidad' => 'T.I.',
+                    'Cédula de Extranjería' => 'C.E.',
                 ),
             ))
             ->add('documento')
