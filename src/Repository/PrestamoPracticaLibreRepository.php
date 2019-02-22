@@ -81,6 +81,31 @@ class PrestamoPracticaLibreRepository extends ServiceEntityRepository
         return $out;
     }
 
+    /**
+     * @param array $criteria
+     *
+     * @return array
+     */
+    public function findPrestamosSala(array $criteria)
+    {
+        $qb = $this->createQueryBuilder('prestamos')
+            ->select('lugar.nombre, COUNT(prestamos.id)')
+            ->innerJoin('prestamos.lugar', 'lugar', 'WITH', 'prestamos.lugar = lugar.id')
+            ->where('prestamos.fechaPrestamo BETWEEN :fechaInicio AND :fechaFin')
+            ->groupBy('lugar.nombre')
+            ->setParameters($criteria)
+            ->getQuery()->getResult()
+        ;
+
+        $out = array();
+
+        foreach($qb as $row) {
+            $out[] = array($row['nombre'], intval($row[1]));
+        }
+
+        return $out;
+    }
+
 //    /**
 //     * @return PrestamoPracticaLibre[] Returns an array of PrestamoPracticaLibre objects
 //     */
