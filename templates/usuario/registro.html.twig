@@ -65,7 +65,7 @@
             <div class="form-group">
                 {{ form_label(form.passwordEnClaro.pass1, null, {'label_attr' : {'class' : 'col-sm-2 control-label required'}}) }}
                 <div class="col-sm-10">
-                    {{ form_widget(form.passwordEnClaro.pass1, {'attr' : {'class' : 'form-control', 'required': true, 'placeholder': 'Debe tener 6 o más caracteres'}}) }}
+                    {{ form_widget(form.passwordEnClaro.pass1, {'attr' : {'class' : 'form-control', 'required': true, 'placeholder': 'Debe tener 6 o más caracteres', 'autocomplete': 'off'}}) }}
                     <span class="text-danger">{{ form_errors(form.passwordEnClaro.pass1) }}</span>
                 </div>
             </div>
@@ -74,7 +74,7 @@
             <div class="form-group">
                 {{ form_label(form.passwordEnClaro.pass2, null, {'label_attr' : {'class' : 'col-sm-2 control-label required'}}) }}
                 <div class="col-sm-10">
-                    {{ form_widget(form.passwordEnClaro.pass2, {'attr' : {'class' : 'form-control', 'required': true, 'placeholder': 'Debe ser igual a la anterior'}}) }}
+                    {{ form_widget(form.passwordEnClaro.pass2, {'attr' : {'class' : 'form-control', 'required': true, 'placeholder': 'Debe ser igual a la anterior', 'autocomplete': 'off'}}) }}
                     <span class="text-danger">{{ form_errors(form.passwordEnClaro.pass2) }}</span>
                 </div>
             </div>

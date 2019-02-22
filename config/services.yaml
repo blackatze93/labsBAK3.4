@@ -39,3 +39,8 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
         arguments: ['@router', '@session']
+
+    kernel.listener.response_listener:
+        class: App\EventListener\ResponseListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

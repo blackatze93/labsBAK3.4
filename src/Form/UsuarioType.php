@@ -74,6 +74,7 @@ class UsuarioType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Usuario::class,
             'accion' => 'modificar_perfil',
+            'csrf_protection' => true,
         ]);
     }
 

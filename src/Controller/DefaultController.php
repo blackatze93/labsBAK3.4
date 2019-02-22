@@ -93,7 +93,13 @@ class DefaultController extends Controller
     public function pazYSalvoAction(Request $request)
     {
         // Se genera el formulario que permite crear el paz y salvo
-        $form = $this->createFormBuilder()
+        $defaultData = array();
+
+        $options = array(
+            'csrf_protection' => true,
+        );
+
+        $form = $this->createFormBuilder($defaultData, $options)
             ->add('codigo', TextType::class, array(
                 'constraints' => array(
                     new NotBlank(),
