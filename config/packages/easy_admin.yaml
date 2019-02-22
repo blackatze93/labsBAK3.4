@@ -80,6 +80,8 @@ easy_admin:
               icon: 'line-chart'
               children:
                 - { label: 'Práctica libre por mes', icon: 'bar-chart', route: 'practica_libre_mes'}
+                - { label: 'Práctica libre por proyecto', icon: 'pie-chart', route: 'practica_libre_proyecto'}
+                - { label: 'Práctica libre por sala', icon: 'area-chart', route: 'practica_libre_sala'}
 
             - { label: 'Editar Inicio', icon: 'pencil-square-o', route: 'editar_inicio'}
 
@@ -770,7 +772,7 @@ easy_admin:
                     - { property: 'cedulaRecibe', label: 'Cédula' }
                     - { property: 'nombreRecibe', label: 'Nombre' }
                     - { type: 'group', label: 'Elementos' }
-                    - { property: 'bajaElementos', label: ' ', type: 'collection', type_options: { entry_type: 'App\Form\Type\BajaElementoType', by_reference: false } }
+                    - { property: 'bajaElementos', label: ' ', type: 'collection', type_options: { entry_type: 'App\Form\BajaElementoType', by_reference: false } }
 
         MotivoBaja:
             class: App\Entity\MotivoBaja
@@ -829,7 +831,7 @@ easy_admin:
                     - { property: 'lugarDestino', type: 'entity', type_options: { class: 'App\Entity\Lugar', attr: { 'data-widget': 'select2' } }, label: 'Lugar de destino' }
                     - { property: 'usuarioRecibe', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Usuario' }, label: 'Recibido por' }
                     - { type: 'group', label: 'Elementos' }
-                    - { property: 'trasladoElementos', label: ' ', type: 'collection', type_options: { entry_type: 'App\Form\Type\TrasladoElementoType', by_reference: false } }
+                    - { property: 'trasladoElementos', label: ' ', type: 'collection', type_options: { entry_type: 'App\Form\TrasladoElementoType', by_reference: false } }
 
         ObjetoEncontrado:
             class: App\Entity\ObjetoEncontrado

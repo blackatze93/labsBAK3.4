@@ -55,6 +55,32 @@ class PrestamoPracticaLibreRepository extends ServiceEntityRepository
             ;
     }
 
+    /**
+     * @param array $criteria
+     *
+     * @return array
+     */
+    public function findPrestamosProyecto(array $criteria)
+    {
+        $qb = $this->createQueryBuilder('prestamos')
+            ->select('proyectos.nombre, COUNT(prestamos.id)')
+            ->innerJoin('prestamos.usuarioSolicita', 'usuarios', 'WITH', 'prestamos.usuarioSolicita = usuarios.id')
+            ->innerJoin('usuarios.proyectoCurricular', 'proyectos', 'WITH', 'usuarios.proyectoCurricular = proyectos.id')
+            ->where('prestamos.fechaPrestamo BETWEEN :fechaInicio AND :fechaFin')
+            ->groupBy('usuarios.proyectoCurricular')
+            ->setParameters($criteria)
+            ->getQuery()->getResult()
+            ;
+
+        $out = array();
+
+        foreach($qb as $row) {
+            $out[] = array($row['nombre'], intval($row[1]));
+        }
+
+        return $out;
+    }
+
 //    /**
 //     * @return PrestamoPracticaLibre[] Returns an array of PrestamoPracticaLibre objects
 //     */

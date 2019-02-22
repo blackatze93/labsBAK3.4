@@ -1,0 +1,55 @@
+{% extends 'easy_admin/layout.html.twig' %}
+
+{% form_theme form 'form/fields.html.twig' %}
+
+{% block head_javascript %}
+    {{ parent() }}
+    <script src="{{ asset('build/highcharts.js') }}"></script>
+{% endblock %}
+
+{% block page_title %}Práctica libre por mes{% endblock %}
+{% block content_title %}Práctica libre por mes{% endblock %}
+
+{% block main %}
+    {{ form_start(form, {'attr': {'class': 'form-inline text-center'}}) }}
+    <div class="form-group">
+        {{ form_label(form.fechaInicio, 'Fecha inicial') }}
+        {{ form_widget(form.fechaInicio, {'attr' : {'class' : 'form-control', 'data-widget': 'datepicker'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.fechaFin, 'Fecha final') }}
+        {{ form_widget(form.fechaFin, {'attr' : {'class' : 'form-control', 'data-widget': 'datepicker'}}) }}
+    </div>
+    {{ form_widget(form.generar, {'attr' : {'style': 'vertical-align: bottom;', 'class' : 'btn btn-primary '}, 'label' : '<span class="fa fa-bar-chart" aria-hidden="true"></span> Generar'}) }}
+    <span class="text-danger">{{ form_errors(form) }}</span>
+    {{ form_end(form) }}
+    <div id="container"></div>
+{% endblock %}
+
+{% block body_javascript %}
+    {% set _select2_locales = ['ar', 'az', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'eu', 'fa', 'fi', 'fr', 'gl', 'he', 'hi', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'km', 'ko', 'lt', 'lv', 'mk', 'ms', 'nb', 'nl', 'pl', 'pt-BR', 'pt', 'ro', 'ru', 'sk', 'sr-Cyrl', 'sr', 'sv', 'th', 'tr', 'uk', 'vi', 'zh-CN', 'zh-TW'] %}
+    {% set _app_language = app.request.locale|split('-')|first|split('_')|first %}
+    {% set _select2_locale = app.request.locale in _select2_locales
+        ? app.request.locale
+        : _app_language in _select2_locales ? _app_language : 'en'
+    %}
+
+    <script src="{{ asset('bundles/easyadmin/javascript/select2/i18n/' ~ _select2_locale ~ '.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            // Select2 widget is only enabled for the <select> elements which
+            // explicitly ask for it
+            $('#main').find('form select[data-widget="select2"]').select2({
+                theme: 'bootstrap',
+                language: '{{ _select2_locale }}',
+                minimumResultsForSearch: -1
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        {% if chart is defined %}
+            {{ chart(chart) }}
+        {% endif %}
+    </script>
+{% endblock %}
