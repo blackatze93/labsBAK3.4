@@ -132,7 +132,7 @@ class ReporteController extends Controller
                         Atentamente,<br><br><br><br><br><br><br>
             
                         _____________________________<br>
-                        <b>ING. JOSE VICENTE REYES MOZO</b><br>
+                        <b>ING. LUIS FELIPE WANUMEN SILVA</b><br>
                         Coordinador Laboratorios de Informática<br>
                         Universidad Distrital Francisco José de Caldas<br>
                         Facultad Tecnológica<br>
