@@ -2551,10 +2551,10 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-highcharts@^7.0.3:
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-7.0.3.tgz#0c8edb578bae28774b9f0d49cf1ae4887b126305"
-  integrity sha512-ubfHLDqKZkGLfDGWYPaa9txLwiJDSWphMZ15xdC0RKKKxZ2ZBc13+MjDfz5ARpYGQvCHmytGOGFUgRWEvkOhNA==
+highcharts@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-7.2.1.tgz#313c434bbfd4525a72b76c6bfbd9c39dfe2d1993"
+  integrity sha512-/fSUZiONmM+x49IQJNf8XwZGiNGOPRmxEOcd0xdJP9Xc3OlG46ZiUWgSLfhYQ9Oyhmzc3V3SKYCLud8+rKLi+w==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
