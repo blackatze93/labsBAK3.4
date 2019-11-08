@@ -2,16 +2,16 @@
 
 {% block head_stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/datetimepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('build/noty.css') }}">
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('datetimepicker') }}
+    {{ encore_entry_link_tags('noty') }}
 {% endblock %}
 
 {% block head_javascript %}
     {{ parent() }}
-    <script src="{{ asset('build/app.js') }}"></script>
-    <script src="{{ asset('build/datetimepicker.js') }}"></script>
-    <script src="{{ asset('build/noty.js') }}"></script>
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('datetimepicker') }}
+    {{ encore_entry_script_tags('noty') }}
 {% endblock %}
 
 {% block header_logo %}

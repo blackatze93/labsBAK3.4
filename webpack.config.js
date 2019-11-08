@@ -21,13 +21,17 @@ Encore
     // allow legacy applications to use $/jQuery as a global variable
     .autoProvidejQuery()
 
-    .enableSourceMaps(!Encore.isProduction())
+    // will require an extra script tag for runtime.js
+    // but, you probably want this, unless you're building a single-page app
+    .enableSingleRuntimeChunk()
 
     // empty the outputPath dir before each build
     .cleanupOutputBeforeBuild()
 
-    // uncomment to create hashed filenames (e.g. app.abc123.css)
-    // .enableVersioning(Encore.isProduction())
+    .enableSourceMaps(!Encore.isProduction())
+
+    // enables hashed filenames (e.g. app.abc123.css)
+    .enableVersioning(Encore.isProduction())
 ;
 
 module.exports = Encore.getWebpackConfig();
