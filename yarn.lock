@@ -2784,10 +2784,10 @@ fsevents@^1.2.7:
     nan "^2.12.1"
     node-pre-gyp "^0.12.0"
 
-fullcalendar-scheduler@^1.9.4:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/fullcalendar-scheduler/-/fullcalendar-scheduler-1.10.0.tgz#3e5fdc086ba03156117d7b567114ad5dcef872d1"
-  integrity sha512-gfkAX8D6eYrQqFrsgo/G/dMwqOb4bJvvy8b1xilVOiOUF5RKHO+MDMwDgorVQaaI+P7qXuLKu9RjpwZ+ydXC7A==
+fullcalendar-scheduler@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/fullcalendar-scheduler/-/fullcalendar-scheduler-1.10.1.tgz#22914c290977a6c3eb031bfa003f72ffd1f8ceb7"
+  integrity sha512-ZNbZIowtYJKTWJHagFEUjT0Z7tgb8zKsHAaNNEocFosOViUzTzdwBNDzCl4VPVVtQ/AG/oZh38AkWH1Wi52Chw==
   dependencies:
     fullcalendar "~3.10.0"
 
