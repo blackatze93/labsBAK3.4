@@ -4263,16 +4263,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.12.2",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "e472606b4b3173564f0edbca8f5d32b52fc4f2c9"
+                "reference": "490878469983ec323d324aa4b208b9d977c78fd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/e472606b4b3173564f0edbca8f5d32b52fc4f2c9",
-                "reference": "e472606b4b3173564f0edbca8f5d32b52fc4f2c9",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/490878469983ec323d324aa4b208b9d977c78fd6",
+                "reference": "490878469983ec323d324aa4b208b9d977c78fd6",
                 "shasum": ""
             },
             "require": {
@@ -4323,7 +4323,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-16T14:05:05+00:00"
+            "time": "2021-05-18T14:00:59+00:00"
         },
         {
             "name": "symfony/form",
@@ -4855,16 +4855,16 @@
         },
         {
             "name": "symfony/maker-bundle",
-            "version": "v1.29.1",
+            "version": "v1.29.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "313b5669a5370bf36cd34fa8f5b5bbbfa5fb8aa8"
+                "reference": "94be78c8ded1cbaac80f5af46c6bce0b3a570b22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/313b5669a5370bf36cd34fa8f5b5bbbfa5fb8aa8",
-                "reference": "313b5669a5370bf36cd34fa8f5b5bbbfa5fb8aa8",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/94be78c8ded1cbaac80f5af46c6bce0b3a570b22",
+                "reference": "94be78c8ded1cbaac80f5af46c6bce0b3a570b22",
                 "shasum": ""
             },
             "require": {
@@ -4935,7 +4935,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-10T19:21:31+00:00"
+            "time": "2021-05-18T16:28:37+00:00"
         },
         {
             "name": "symfony/options-resolver",
