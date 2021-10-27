@@ -3061,10 +3061,10 @@ fsevents@~2.3.1:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
 
-fullcalendar-scheduler@^1.9.4:
-  version "1.10.1"
-  resolved "https://registry.yarnpkg.com/fullcalendar-scheduler/-/fullcalendar-scheduler-1.10.1.tgz#22914c290977a6c3eb031bfa003f72ffd1f8ceb7"
-  integrity sha512-ZNbZIowtYJKTWJHagFEUjT0Z7tgb8zKsHAaNNEocFosOViUzTzdwBNDzCl4VPVVtQ/AG/oZh38AkWH1Wi52Chw==
+fullcalendar-scheduler@^1.10.3:
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/fullcalendar-scheduler/-/fullcalendar-scheduler-1.10.3.tgz#d311ed0bd6007ed2c671b3ff3edf8263eac50ba2"
+  integrity sha512-maeoGkpu868Vn6Fn2csZLy68j96emKP9/HksrOdu/F4JVcYyszXofZrMnfV2W7GJE3Gxd2HYrnALivz3+sxE+g==
   dependencies:
     fullcalendar "~3.10.0"
 
